@@ -1,20 +1,20 @@
+const i18n = require("../util/i18n");
 const { play } = require("../include/play");
 const ytdl = require("ytdl-core");
 const YouTubeAPI = require("simple-youtube-api");
-const scdl = require("soundcloud-downloader").default
+const ytsr = require('ytsr');
+const { getTracks } = require('spotify-url-info');
+const scdl = require("soundcloud-downloader").default;
 const https = require("https");
-const { YOUTUBE_API_KEY, SOUNDCLOUD_CLIENT_ID, LOCALE, DEFAULT_VOLUME, SPOTIFY_CLIENT_ID, SPOTIFY_SECRET_ID } = require("../util/EvobotUtil");
+const { YOUTUBE_API_KEY, SOUNDCLOUD_CLIENT_ID, LOCALE, DEFAULT_VOLUME, SPOTIFY_CLIENT_ID, SPOTIFY_SECRET_ID } = require("../util/Util");
 const spotifyURI = require('spotify-uri');
 const Spotify = require('node-spotify-api');
-const i18n = require("i18n");
 
 const youtube = new YouTubeAPI(YOUTUBE_API_KEY);
 const spotify = new Spotify({
   id: SPOTIFY_CLIENT_ID,
   secret: SPOTIFY_SECRET_ID
 });
-
-i18n.setLocale(LOCALE);
 
 module.exports = {
   name: "play",
@@ -25,7 +25,9 @@ module.exports = {
     const { channel } = message.member.voice;
 
     const serverQueue = message.client.queue.get(message.guild.id);
+
     if (!channel) return message.reply(i18n.__("play.errorNotChannel")).catch(console.error);
+
     if (serverQueue && channel !== message.guild.me.voice.channel)
       return message
         .reply(i18n.__mf("play.errorNotInSameChannel", { user: message.client.user }))
@@ -41,7 +43,7 @@ module.exports = {
     if (!permissions.has("SPEAK")) return message.reply(i18n.__("play.missingPermissionSpeak"));
 
     const search = args.join(" ");
-    const videoPattern = /^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
+    const videoPattern = /^(https?:\/\/)?(www\.)?(m\.|music\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
     const playlistPattern = /^.*(list=)([^#\&\?]*).*/gi;
     const scRegex = /^https?:\/\/(soundcloud\.com)\/(.*)$/;
     const mobileScRegex = /^https?:\/\/(soundcloud\.app\.goo\.gl)\/(.*)$/;
@@ -67,7 +69,7 @@ module.exports = {
           if (res.statusCode == "302") {
             return message.client.commands.get("play").execute(message, [res.headers.location]);
           } else {
-            return message.reply("No content could be found at that url.").catch(console.error);
+            return message.reply(i18n.__("play.songNotFound")).catch(console.error);
           }
         });
       } catch (error) {
@@ -83,7 +85,8 @@ module.exports = {
       connection: null,
       songs: [],
       loop: false,
-      volume: DEFAULT_VOLUME || 100,
+      volume: DEFAULT_VOLUME,
+      muted: false,
       playing: true
     };
 
@@ -138,7 +141,13 @@ module.exports = {
       }
     } else {
       try {
-        const results = await youtube.searchVideos(search, 1, { part: "snippet" });
+        const results = await youtube.searchVideos(search, 1, { part: "id" });
+
+        if (!results.length) {
+          message.reply(i18n.__("play.songNotFound")).catch(console.error);
+          return;
+        }
+
         songInfo = await ytdl.getInfo(results[0].url);
         song = {
           title: songInfo.videoDetails.title,
@@ -147,7 +156,12 @@ module.exports = {
         };
       } catch (error) {
         console.error(error);
-        return message.reply(error.message).catch(console.error);
+        
+        if (error.message.includes("410")) {
+          return message.reply("Video is age restricted, private or unavailable").catch(console.error);
+        } else {
+          return message.reply(error.message).catch(console.error);
+        }
       }
     }
 
