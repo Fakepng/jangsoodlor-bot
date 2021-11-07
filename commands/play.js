@@ -1,11 +1,20 @@
-const i18n = require("../util/i18n");
 const { play } = require("../include/play");
 const ytdl = require("ytdl-core");
 const YouTubeAPI = require("simple-youtube-api");
-const scdl = require("soundcloud-downloader").default;
+const scdl = require("soundcloud-downloader").default
 const https = require("https");
-const { YOUTUBE_API_KEY, SOUNDCLOUD_CLIENT_ID, DEFAULT_VOLUME } = require("../util/Util");
+const { YOUTUBE_API_KEY, SOUNDCLOUD_CLIENT_ID, LOCALE, DEFAULT_VOLUME, SPOTIFY_CLIENT_ID, SPOTIFY_SECRET_ID } = require("../util/EvobotUtil");
+const spotifyURI = require('spotify-uri');
+const Spotify = require('node-spotify-api');
+const i18n = require("i18n");
+
 const youtube = new YouTubeAPI(YOUTUBE_API_KEY);
+const spotify = new Spotify({
+  id: SPOTIFY_CLIENT_ID,
+  secret: SPOTIFY_SECRET_ID
+});
+
+i18n.setLocale(LOCALE);
 
 module.exports = {
   name: "play",
@@ -16,9 +25,7 @@ module.exports = {
     const { channel } = message.member.voice;
 
     const serverQueue = message.client.queue.get(message.guild.id);
-
     if (!channel) return message.reply(i18n.__("play.errorNotChannel")).catch(console.error);
-
     if (serverQueue && channel !== message.guild.me.voice.channel)
       return message
         .reply(i18n.__mf("play.errorNotInSameChannel", { user: message.client.user }))
@@ -34,10 +41,14 @@ module.exports = {
     if (!permissions.has("SPEAK")) return message.reply(i18n.__("play.missingPermissionSpeak"));
 
     const search = args.join(" ");
-    const videoPattern = /^(https?:\/\/)?(www\.)?(m\.|music\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
+    const videoPattern = /^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
     const playlistPattern = /^.*(list=)([^#\&\?]*).*/gi;
     const scRegex = /^https?:\/\/(soundcloud\.com)\/(.*)$/;
     const mobileScRegex = /^https?:\/\/(soundcloud\.app\.goo\.gl)\/(.*)$/;
+    const spotifyPattern = /^.*(https:\/\/open\.spotify\.com\/track)([^#\&\?]*).*/gi;
+    const spotifyValid = spotifyPattern.test(args[0]);
+    const spotifyPlaylistPattern = /^.*(https:\/\/open\.spotify\.com\/playlist)([^#\&\?]*).*/gi;
+    const spotifyPlaylistValid = spotifyPlaylistPattern.test(args[0])
     const url = args[0];
     const urlValid = videoPattern.test(args[0]);
 
@@ -45,6 +56,8 @@ module.exports = {
     if (!videoPattern.test(args[0]) && playlistPattern.test(args[0])) {
       return message.client.commands.get("playlist").execute(message, args);
     } else if (scdl.isValidUrl(url) && url.includes("/sets/")) {
+      return message.client.commands.get("playlist").execute(message, args);
+    } else if (spotifyPlaylistValid) {
       return message.client.commands.get("playlist").execute(message, args);
     }
 
@@ -54,7 +67,7 @@ module.exports = {
           if (res.statusCode == "302") {
             return message.client.commands.get("play").execute(message, [res.headers.location]);
           } else {
-            return message.reply(i18n.__("play.songNotFound")).catch(console.error);
+            return message.reply("No content could be found at that url.").catch(console.error);
           }
         });
       } catch (error) {
@@ -70,15 +83,36 @@ module.exports = {
       connection: null,
       songs: [],
       loop: false,
-      volume: DEFAULT_VOLUME,
-      muted: false,
+      volume: DEFAULT_VOLUME || 100,
       playing: true
     };
 
     let songInfo = null;
     let song = null;
 
-    if (urlValid) {
+    if (spotifyValid) {
+      let spotifyTitle, spotifyArtist;
+      const spotifyTrackID = spotifyURI.parse(url).id
+      const spotifyInfo = await spotify.request(`https://api.spotify.com/v1/tracks/${spotifyTrackID}`).catch(err => {
+        return message.channel.send(`Oops... \n` + err)
+      })
+      spotifyTitle = spotifyInfo.name
+      spotifyArtist = spotifyInfo.artists[0].name
+
+      try {
+        const final = await youtube.searchVideos(`${spotifyTitle} - ${spotifyArtist}`, 1, { part: 'snippet' });
+        songInfo = await ytdl.getInfo(final[0].url)
+        song = {
+          title: songInfo.videoDetails.title,
+          url: songInfo.videoDetails.video_url,
+          duration: songInfo.videoDetails.lengthSeconds
+        }
+      } catch (err) {
+        console.log(err)
+        return message.channel.send(`Oops.. There was an error! \n ` + err)
+      }
+
+    } else if (urlValid) {
       try {
         songInfo = await ytdl.getInfo(url);
         song = {
@@ -104,13 +138,7 @@ module.exports = {
       }
     } else {
       try {
-        const results = await youtube.searchVideos(search, 1, { part: "id" });
-
-        if (!results.length) {
-          message.reply(i18n.__("play.songNotFound")).catch(console.error);
-          return;
-        }
-
+        const results = await youtube.searchVideos(search, 1, { part: "snippet" });
         songInfo = await ytdl.getInfo(results[0].url);
         song = {
           title: songInfo.videoDetails.title,
@@ -119,12 +147,7 @@ module.exports = {
         };
       } catch (error) {
         console.error(error);
-        
-        if (error.message.includes("410")) {
-          return message.reply("Video is age restricted, private or unavailable").catch(console.error);
-        } else {
-          return message.reply(error.message).catch(console.error);
-        }
+        return message.reply(error.message).catch(console.error);
       }
     }
 
@@ -146,7 +169,7 @@ module.exports = {
       console.error(error);
       message.client.queue.delete(message.guild.id);
       await channel.leave();
-      return message.channel.send(i18n.__mf("play.cantJoinChannel", { error: error })).catch(console.error);
+      return message.channel.send(i18n.__('play.cantJoinChannel', { error: error })).catch(console.error);
     }
   }
 };

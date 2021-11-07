@@ -1,6 +1,6 @@
 {
   "clip": {
-    "description": "Reproduce un sonido .mp3 dentro de la carpeta sonido",
+    "description": "Reproduce un sounido .mp3 dentro de la carpeta sonido",
     "usagesReply": "Cómo usarlo: /clip <nombre_clip.mp3>",
     "errorQueue": "No se puede reproducir el clip porque hay una cola activa",
     "errorNotChannel": "¡Primero debes unirte a un canal de voz!"
@@ -9,7 +9,7 @@
     "description": "Lista todos los clips"
   },
   "help": {
-    "description": "Muestra todos los comandos y descripciones",
+    "description": "Muestratodos los comandos y descripciones",
     "embedTitle": "Ayuda con {botname} ",
     "embedDescription": "Listado de comandos"
   },
@@ -22,28 +22,28 @@
     "result": "Reproduciendo en bucle: {loop}"
   },
   "lyrics": {
-    "description": "Obtén la letra de la música actual",
+    "description": "Obtén la letra de la canción actual",
     "errorNotQueue": "No se está reproduciendo nada.",
-    "lyricsNotFound": "No se encontró la letra de {title}.",
+    "lyricsNotFound": "No se encontraron letras para {title}.",
     "embedTitle": "{title} - Letra"
   },
   "move": {
     "description": "Mueve canciones en la cola",
     "errorNotQueue": "No hay una cola.",
-    "usagesReply": "Uso correcto: {prefix}move <Número en la Cola>",
+    "usagesReply": "Cómo usarlo: {prefix}move <Queue Number>",
     "result": "<@{author}> 🚚 movío **{title}** al puesto {index} en la cola."
   },
   "nowplaying": {
-    "description": "Muestra la música que se está reproduciendo actualmente",
+    "description": "Muestra la canción que se está reproduciendo actualmente",
     "errorNotQueue": "No se está reproduciendo nada.",
-    "embedTitle": "Música actual:",
+    "embedTitle": "Canción actual:",
     "live": " ◉ EN DIRECTO",
     "timeRemaining": "Tiempo Restante: {time}"
   },
   "pause": {
-    "description": "Pausa la música que se está reproduciendo actualmente",
+    "description": "Pausa la canción que se está reproduciendo actualmente",
     "errorNotQueue": "No se está reproduciendo nada.",
-    "result": "<@{author}> ⏸ Pausó la música."
+    "result": "<@{author}> ⏸ pauso la música."
   },
   "ping": {
     "description": "Muestra la latencia media del bot (ping)",
@@ -53,42 +53,41 @@
     "description": "Reproduce música de Youtube o Soundcloud",
     "errorNotChannel": "¡Primero debes unirte a un canal de voz!",
     "errorNotInSameChannel": "Tienes que estár en el mismo canal de voz que {user}",
-    "usageReply": "Uso correcto: {prefix}play <URL de YouTube | Nombre del vídeo | URL de Soundcloud>",
+    "usageReply": "Cómo usarlo: {prefix}play <URL YouTube | Nombre del vídeo | URL Soundcloud>",
     "missingPermissionConnect": "No se puede conectar al canal de voz, permisos insuficientes.",
-    "missingPermissionSpeak": "¡No se puede reproducir sonidos en este canal, comprueba los permisos!",
-    "queueAdded": "✅ <@{author}> ha añadido **{title}** a la cola de reproducción",
+    "missingPermissionSpeak": "¡No se pudo reproducir sonidos en este canal, comprueba los permisos!",
+    "queueAdded": "✅ Se ha añadido **{title}** a la cola de reproducción por <@{author}>",
     "cantJoinChannel": "No se pudo conectar al canal: {error}",
     "queueEnded": "❌ Cola de música finalizada.",
     "queueError": "Error: {error}",
     "startedPlaying": "🎶 Ahora reproduciendo: **{title}** {url}",
-    "skipSong": "<@{author}> ⏩ ¡Saltó la música!",
-    "pauseSong": "<@{author}> ⏸ ¡Pausó la música!",
-    "resumeSong": "<@{author}> ▶ ¡Continuó la reproducción!",
-    "unmutedSong": "<@{author}> 🔊 ¡Desilenció la música!",
-    "mutedSong": "<@{author}> 🔇 ¡Silenció la música!",
-    "decreasedVolume": "<@{author}> 🔉 Bajó el volumen de la música, el volumen actual ahora es {volume}%",
-    "increasedVolume": "<@{author}> 🔊 Subió el volumen de la música, el volumen actual ahora es {volume}%",
-    "loopSong": "<@{author}> El bucle actual esta {loop}",
+    "skipSong": "<@{author}> ⏩ Canción salteada.",
+    "pauseSong": "<@{author}> ⏸ Musica pausada.",
+    "resumeSong": "<@{author}> ▶ ¡Continuar con la reproducción!",
+    "unmutedSong": "<@{author}> 🔊 ¡Desmuteo la musica!",
+    "mutedSong": "<@{author}> 🔇 Muteo la música!",
+    "decreasedVolume": "<@{author}> 🔉 Bajó la música, volumen actual {volume}%",
+    "increasedVolume": "<@{author}> 🔊 Subió la música, volumen actual {volume}%",
+    "loopSong": "<@{author}> El bucle actual es {loop}",
     "stopSong": "<@{author}> ⏹ ¡Paró la música!",
-    "leaveChannel": "Saliendo del chat de voz...",
-    "songNotFound": "Audio no encontrado"
+    "leaveChannel": "Abandonando chat de voz..."
   },
   "playlist": {
     "description": "Reproduce una lista de reproducción de youtube",
-    "usagesReply": "Uso correcto: {prefix}playlist <URL de la Lista de Reproducción en YouTube | Nombre de la Lista de Reproducción>",
+    "usagesReply": "Cómo usarlo: {prefix}playlist <YouTube Playlist URL | Playlist Name>",
     "errorNotChannel": "¡Primero debes unirte a un canal de voz!",
     "errorNotInSameChannel": "Tienes que estár en el mismo canal de voz que {user}",
     "missingPermissionConnect": "No se puede conectar al canal de voz, permisos insuficientes.",
-    "missingPermissionSpeak": "¡No se puede reproducir sonidos en este canal, comprueba los permisos!",
+    "missingPermissionSpeak": "¡No se pudo reproducir sonidos en este canal, comprueba los permisos!",
     "errorNotFoundPlaylist": "No se encontró la lista de reproducción :(",
-    "fetchingPlaylist": "⌛ Obteniendo la lista de reproducción...",
+    "fetchingPlaylist": "⌛ Capturando la lista de reproducción...",
     "playlistCharLimit": "\nLista de reproducción más larga que el límite de caracteres por mensaje...",
     "startedPlaylist": "<@{author}> Comenzó a reproducir una lista de reproducción",
     "cantJoinChannel": "No se pudo conectar al canal: {error}"
   },
   "pruning": {
     "description": "Activa la eliminación de los mensajes del bot",
-    "errorWritingFile": "Se produjo un error escribiendo el archivo.",
+    "errorWritingFile": "Se produjo un error de escritura en el archivo.",
     "result": "El modo actual es {result}"
   },
   "queue": {
@@ -97,12 +96,12 @@
     "errorNotQueue": "❌ **No se está reproduciendo nada en el servidor**",
     "currentPage": "Página actual - ",
     "embedTitle": "Cola de música\n",
-    "embedCurrentSong": "**Música actual - [{title}]({url})**\n\n{info}"
+    "embedCurrentSong": "**Canción actual - [{title}]({url})**\n\n{info}"
   },
   "remove": {
     "description": "Elimina canciones de la cola de reproducción",
     "errorNotQueue": "No hay una cola de reproduccón.",
-    "usageReply": "Uso correcto: {prefix}remove <Número en la Cola>",
+    "usageReply": "Cómo usarlo: {prefix}remove <Queue Number>",
     "result": "<@{author}> ❌ Eliminó **{title}** de la cola de reproducción."
   },
   "resume": {
@@ -113,28 +112,28 @@
   },
   "search": {
     "description": "Busca y selecciona vídeos para reproducir.",
-    "usageReply": "Uso correcto: {prefix}{name} <Nombre del Vídeo>",
+    "usageReply": "Cómo usarlo: {prefix}{name} <Video Name>",
     "errorAlreadyCollector": "Un recolector de mensajes ya está activo en el servidor actualmente.",
     "errorNotChannel": "¡Primero debes unirte a un canal de voz!",
-    "resultEmbedTitle": "**Responde con el número de la música que quieras**",
+    "resultEmbedTtile": "**Responde con el número de la canción que quieres**",
     "resultEmbedDesc": "Resultados para: {search}"
   },
   "shuffle": {
-    "description": "Randomizar la cola de reproducción",
-    "errorNotQueue": "No hay una cola de reproducción.",
-    "result": "<@{author}> 🔀 ha randomizado la cola"
+    "description": "Desordenar la cola de reproducción",
+    "errorNotQueue": "No hay una cola de reproduccón.",
+    "result": "<@{author}> 🔀 shuffled the queue"
   },
   "skip": {
-    "description": "Salta a la sigiente música en la cola de reproducción",
-    "errorNotQueue": "No se está reproduciendo nada que pueda saltar para ti.",
-    "result": "<@{author}> ⏭ Saltó la música"
+    "description": "Salta a la sigiente canción en la cola de reproducción",
+    "errorNotQueue": "No se está reproduciendo nada que pueda saltear para ti.",
+    "result": "<@{author}> ⏭ Salteo la canción"
   },
   "skipto": {
     "description": "Salta a la posición seleccionada en la cola",
-    "usageReply": "Cómo usarlo: {prefix}{name} <Número en la Cola>",
+    "usageReply": "Cómo usarlo: {prefix}{name} <Queue Number>",
     "errorNotQueue": "No hay una cola de reproduccón.",
     "errorNotValid": "¡La cola solo tiene {length} canciones!",
-    "result": "<@{author}> ⏭ Saltó {arg} canciones"
+    "result": "<@{author}> ⏭ Salteo {arg} canciones"
   },
   "stop": {
     "description": "Para la música",
@@ -143,7 +142,7 @@
   },
   "uptime": {
     "description": "Comprueba el tiempo desde que se inició el bot",
-    "result": "Tiempo en linea: `{days} día(s),{hours} horas, {minutes} minutos, {seconds} segundos`"
+    "result": "Tiempo funcionando: `{days} day(s),{hours} hours, {minutes} minutes, {seconds} seconds`"
   },
   "volume": {
     "description": "Cambia el volumen de reproducción actual",
@@ -161,6 +160,6 @@
     "disabled": "**desactivado**",
     "errorNotChannel": "¡Primero debes unirte a un canal de voz!",
     "cooldownMessage": "Por favor espera {time} segundos antes de volver a usar el comando `{name}`.",
-    "errorCommand": "Se produjo un error con ese comando."
+    "errorCommend": "Se produjo un error con ese comando."
   }
 }

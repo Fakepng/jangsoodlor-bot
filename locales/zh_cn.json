@@ -9,7 +9,7 @@
     "description": "列出所有本地音乐"
   },
   "help": {
-    "description": "列出所有指令的详细资讯",
+    "description": "列出所有的指令已经详细资讯",
     "embedTitle": "{botname} 帮助",
     "embedDescription": "所有的指令清单"
   },
@@ -29,7 +29,7 @@
   },
   "move": {
     "description": "移动歌曲到队列的其他位置",
-    "errorNotQueue": "队列中没有歌曲",
+    "errorNotQueue": "There is no queue.",
     "usagesReply": "用法: {prefix}move <歌曲队列编号>",
     "result": "<@{author}> 🚚 从音乐队列中移动 **{title}** 至 {index}"
   },
@@ -53,7 +53,7 @@
     "description": "播放 YouTube 或 Soundcloud 的音乐",
     "errorNotChannel": "你必须先加入语音频道!",
     "errorNotInSameChannel": "你必须跟 {user} 在同一个频道裡",
-    "usageReply": "Usage: {prefix}play <YouTube 网址 | 影片名称 | Soundcloud 网址>",
+    "usageReply": "Usage: {prefix}play <YouTube 网址 | 影片名称 | Soundcloud 网址 | Spotify 网址>",
     "missingPermissionConnect": "无法连结至语音频道，没有权限",
     "missingPermissionSpeak": "我无法在语音频道裡说话，请确定我有相关的权限!",
     "queueAdded": "✅ **{title}** 已经被 <@{author}> 加入音乐队列",
@@ -70,8 +70,7 @@
     "increasedVolume": "<@{author}> 🔊 增加了音量, 目前音量为 {volume}%",
     "loopSong": "<@{author}> 重複播放目前是 {loop}",
     "stopSong": "<@{author}> ⏹ 停止了歌曲!",
-    "leaveChannel": "正在离开语音频道...",
-    "songNotFound": "没有找到曲目"
+    "leaveChannel": "正在离开语音频道..."
   },
   "playlist": {
     "description": "播放 YouTube 的播放清单",
@@ -116,7 +115,7 @@
     "usageReply": "用法: {prefix}{name} <影片名称>",
     "errorAlreadyCollector": "讯息接收器已经在这个频道上启用",
     "errorNotChannel": "你必须先加入语音频道!",
-    "resultEmbedTitle": "**回复你想要播放的歌曲代码**",
+    "resultEmbedTtile": "**回复你想要播放的歌曲代码**",
     "resultEmbedDesc": "搜寻{search}的结果"
   },
   "shuffle": {
@@ -161,6 +160,17 @@
     "disabled": "**关闭**",
     "errorNotChannel": "你必须先加入语音频道!",
     "cooldownMessage": "请等待 {time} 秒后再使用 `{name}` 指令",
-    "errorCommand": "执行指令时發生错误"
+    "errorCommend": "执行指令时發生错误"
+  },
+  "blacklist": {
+    "description": "阻止用户使用该机器人.",
+    "noType": "请提供类型. 采用 list, add, 要么 remove.",
+    "noBlacklisted": "没有人被列入黑名单.",
+    "provideMember": "请提供用户黑名单.",
+    "botMember": "请不要将机器人列入黑名单.",
+    "alreadyBlacklisted": "用户已被列入黑名单.",
+    "doneBlacklisted": "用户已被列入黑名单.",
+    "notBlacklisted": "用户未列入黑名单.",
+    "userWhitelisted": "用户已列入白名单."
   }
 }

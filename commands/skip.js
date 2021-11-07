@@ -1,5 +1,7 @@
-const { canModifyQueue } = require("../util/Util");
-const i18n = require("../util/i18n");
+const { canModifyQueue, LOCALE } = require("../util/EvobotUtil");
+const i18n = require("i18n");
+
+i18n.setLocale(LOCALE);
 
 module.exports = {
   name: "skip",

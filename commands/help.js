@@ -1,5 +1,8 @@
 const { MessageEmbed } = require("discord.js");
-const i18n = require("../util/i18n");
+const { LOCALE } = require("../util/EvobotUtil");
+const i18n = require("i18n");
+
+i18n.setLocale(LOCALE);
 
 module.exports = {
   name: "help",

@@ -1,8 +1,10 @@
 const { MessageEmbed } = require("discord.js");
 const YouTubeAPI = require("simple-youtube-api");
-const { YOUTUBE_API_KEY } = require("../util/Util");
+const { YOUTUBE_API_KEY, LOCALE } = require("../util/EvobotUtil");
 const youtube = new YouTubeAPI(YOUTUBE_API_KEY);
-const i18n = require("../util/i18n");
+const i18n = require("i18n");
+
+i18n.setLocale(LOCALE);
 
 module.exports = {
   name: "search",
@@ -19,7 +21,7 @@ module.exports = {
     const search = args.join(" ");
 
     let resultsEmbed = new MessageEmbed()
-      .setTitle(i18n.__("search.resultEmbedTitle"))
+      .setTitle(i18n.__("search.resultEmbedTtile"))
       .setDescription(i18n.__mf("search.resultEmbedDesc", { search: search }))
       .setColor("#F8AA2A");
 
@@ -30,7 +32,7 @@ module.exports = {
       let resultsMessage = await message.channel.send(resultsEmbed);
 
       function filter(msg) {
-        const pattern = /^[1-9][0]?(\s*,\s*[1-9][0]?)*$/;
+        const pattern = /^[0-9]{1,2}(\s*,\s*[0-9]{1,2})*$/;
         return pattern.test(msg.content);
       }
 
