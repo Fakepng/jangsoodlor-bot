@@ -2,19 +2,10 @@ const i18n = require("../util/i18n");
 const { play } = require("../include/play");
 const ytdl = require("ytdl-core");
 const YouTubeAPI = require("simple-youtube-api");
-const ytsr = require('ytsr');
-const { getTracks } = require('spotify-url-info');
 const scdl = require("soundcloud-downloader").default;
 const https = require("https");
-const { YOUTUBE_API_KEY, SOUNDCLOUD_CLIENT_ID, LOCALE, DEFAULT_VOLUME, SPOTIFY_CLIENT_ID, SPOTIFY_SECRET_ID } = require("../util/Util");
-const spotifyURI = require('spotify-uri');
-const Spotify = require('node-spotify-api');
-
+const { YOUTUBE_API_KEY, SOUNDCLOUD_CLIENT_ID, DEFAULT_VOLUME } = require("../util/Util");
 const youtube = new YouTubeAPI(YOUTUBE_API_KEY);
-const spotify = new Spotify({
-  id: SPOTIFY_CLIENT_ID,
-  secret: SPOTIFY_SECRET_ID
-});
 
 module.exports = {
   name: "play",
@@ -47,10 +38,6 @@ module.exports = {
     const playlistPattern = /^.*(list=)([^#\&\?]*).*/gi;
     const scRegex = /^https?:\/\/(soundcloud\.com)\/(.*)$/;
     const mobileScRegex = /^https?:\/\/(soundcloud\.app\.goo\.gl)\/(.*)$/;
-    const spotifyPattern = /^.*(https:\/\/open\.spotify\.com\/track)([^#\&\?]*).*/gi;
-    const spotifyValid = spotifyPattern.test(args[0]);
-    const spotifyPlaylistPattern = /^.*(https:\/\/open\.spotify\.com\/playlist)([^#\&\?]*).*/gi;
-    const spotifyPlaylistValid = spotifyPlaylistPattern.test(args[0])
     const url = args[0];
     const urlValid = videoPattern.test(args[0]);
 
@@ -58,8 +45,6 @@ module.exports = {
     if (!videoPattern.test(args[0]) && playlistPattern.test(args[0])) {
       return message.client.commands.get("playlist").execute(message, args);
     } else if (scdl.isValidUrl(url) && url.includes("/sets/")) {
-      return message.client.commands.get("playlist").execute(message, args);
-    } else if (spotifyPlaylistValid) {
       return message.client.commands.get("playlist").execute(message, args);
     }
 
@@ -93,29 +78,7 @@ module.exports = {
     let songInfo = null;
     let song = null;
 
-    if (spotifyValid) {
-      let spotifyTitle, spotifyArtist;
-      const spotifyTrackID = spotifyURI.parse(url).id
-      const spotifyInfo = await spotify.request(`https://api.spotify.com/v1/tracks/${spotifyTrackID}`).catch(err => {
-        return message.channel.send(`Oops... \n` + err)
-      })
-      spotifyTitle = spotifyInfo.name
-      spotifyArtist = spotifyInfo.artists[0].name
-
-      try {
-        const final = await youtube.searchVideos(`${spotifyTitle} - ${spotifyArtist}`, 1, { part: 'snippet' });
-        songInfo = await ytdl.getInfo(final[0].url)
-        song = {
-          title: songInfo.videoDetails.title,
-          url: songInfo.videoDetails.video_url,
-          duration: songInfo.videoDetails.lengthSeconds
-        }
-      } catch (err) {
-        console.log(err)
-        return message.channel.send(`Oops.. There was an error! \n ` + err)
-      }
-
-    } else if (urlValid) {
+    if (urlValid) {
       try {
         songInfo = await ytdl.getInfo(url);
         song = {
@@ -183,7 +146,7 @@ module.exports = {
       console.error(error);
       message.client.queue.delete(message.guild.id);
       await channel.leave();
-      return message.channel.send(i18n.__('play.cantJoinChannel', { error: error })).catch(console.error);
+      return message.channel.send(i18n.__mf("play.cantJoinChannel", { error: error })).catch(console.error);
     }
   }
 };
