@@ -7,12 +7,12 @@ module.exports = {
     execute(message, args){
         const axios = require('axios')
         if (args[0] == "latest"){
-            axios.get(`https://watasalim.vercel.app/api/quotes/${args}`).then(function (response) {
+            axios.get('https://watasalim.vercel.app/api/quotes/latest').then(function (response) {
                 message.channel.send(`สลิ่ม: ${response.data.quote.body}\nLink: <${response.data.quote.url}> ID: ${response.data.quote.id}`);
             }).catch(function (error) {
-                        console.log(error);
-                    }) 
-                }else {
+                console.log(error);
+            }) 
+        }else {
             var argsId = parseInt(args[0], 10);
             axios.get('https://watasalim.vercel.app/api/quotes/latest').then(function (response) {
                 var quotesId = parseInt(response.data.quote.id, 10);
@@ -34,6 +34,6 @@ module.exports = {
             }).catch(function (error) {
                 console.log(error);
             })
-                }
+        }
     }
 }
