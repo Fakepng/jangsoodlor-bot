@@ -18,4 +18,5 @@ exports.SPOTIFY_SECRET_ID = config ? config.SPOTIFY_SECRET_ID : process.env.SPOT
 exports.PRUNING = (config ? config.PRUNING : (process.env.PRUNING === 'true' ? true : false));
 exports.STAY_TIME = (config ? config.STAY_TIME : parseInt(process.env.STAY_TIME)) || 30;
 exports.DEFAULT_VOLUME = (config ? config.DEFAULT_VOLUME : parseInt(process.env.DEFAULT_VOLUME)) || 100;
+exports.GIPHY_TOKEN = config ? config.GIPHY_TOKEN : process.env.GIPHY_TOKEN;
 exports.LOCALE = (config ? config.LOCALE : process.env.LOCALE) || "en";
