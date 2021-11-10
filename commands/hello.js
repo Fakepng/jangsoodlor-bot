@@ -1,7 +1,13 @@
+const config = require("../config.json");
+
 module.exports = {
     name: 'hello',
     description: "Hello Comrade",
     execute(message, args){
-        message.channel.send('Hello Comrade!');
+        if(args == 'help') {
+            message.channel.send(`Usage ${config.PREFIX}hello`);
+        }else {
+            message.channel.send('Hello Comrade!');
+        }
     }
 }

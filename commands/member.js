@@ -1,7 +1,13 @@
+const config = require("../config.json");
+
 module.exports = {
     name: 'member',
     description: "Display server member count",
     execute(message, args){
-        message.channel.send(`Total Member: ${message.guild.memberCount}`);
+        if (args == 'help') {
+            message.channel.send(`${config.prefix}member`);
+        }else {
+            message.channel.send(`Total Member: ${message.guild.memberCount}`);
+        }
     }
 }

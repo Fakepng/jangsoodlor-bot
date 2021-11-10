@@ -1,4 +1,5 @@
-const axios = require('axios')
+const axios = require('axios');
+const config = require("../config.json");
 
 module.exports = {
     name: 'joke',
@@ -6,6 +7,8 @@ module.exports = {
     execute(message, args){
         if (!args[0]) {
             message.channel.send("You need to specify a category!\nany, programming, miscellaneous, dark, pun, spooky, christmas");
+        }else if(args == 'help') {
+            message.channel.send(`Usage ${config.PREFIX}joke <any, programming, miscellaneous, dark, pun, spooky, christmas>`);
         }else {
             switch(args[0]) {
                 case "any":
