@@ -13,7 +13,7 @@ module.exports = {
       .addFields(
         { name: 'Music', value: 'loop(l), lyrics(ly), move(mv), np, pause, play(p), playlist(pl), queue(q), remove(rm), resume(r), search, shuffle, skip(s), skipto(st), stop, volume(v)' },
         { name: 'Orginal', value: 'help(h), invite, ping, uptime' },
-        { name: 'Other', value: 'avatar, covid, dict, gif, hello, http, iss, joke, joker, lanna, member, meme, rules, salim, say' },
+        { name: 'Other', value: 'avatar, cat, covid, dict, dog, gif, hello, http, iss, joke, joker, lanna, member, meme, rules, salim, say' },
         { name: 'Need help', value: 'Type [command] help => (Only with "Other" command)' },
       );
 
