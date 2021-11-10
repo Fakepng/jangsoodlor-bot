@@ -11,5 +11,7 @@
     "LOCALE": "en",
     "STAY_TIME": 30,
     "DEFAULT_VOLUME": 100,
-    "GIPHY_TOKEN": ""
+    "GIPHY_TOKEN": "",
+    "CAT_TOKEN": "",
+    "DOG_TOKEN": ""
   }
