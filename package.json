@@ -1,13 +1,13 @@
 {
-  "name": "evobot",
-  "version": "0.15.2",
+  "name": "jangsoodlor-bot",
+  "version": "1.5.2",
   "description": "Discord music bot built with discord.js",
   "main": "index.js",
-  "author": "Erit Islami <eritislami@gmail.com>",
+  "author": "Krit Kasemtewin",
   "private": true,
-  "homepage": "https://github.com/eritislami/evobot",
-  "repository": "github:eritislami/evobot",
-  "bugs": "https://github.com/eritislami/evobot/issues",
+  "homepage": "https://github.com/Fakepng/jangsoodlor-bot",
+  "repository": "github:Fakepng/jangsoodlor-bot",
+  "bugs": "https://github.com/Fakepng/jangsoodlor-bot/issues",
   "engines": {
     "node": ">=14.0.0"
   },
