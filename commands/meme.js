@@ -6,7 +6,7 @@ module.exports = {
     execute(message, args){
         if (args == 'help') {
             message.channel.send(`Usage ${config.PREFIX}meme`);
-        }
+        }else {
             const axios = require('axios')
             axios.get('https://meme-api.herokuapp.com/gimme').then(function (response) {
                 message.channel.send(`${response.data.title}\nLink: <${response.data.postLink}>`);
@@ -14,5 +14,6 @@ module.exports = {
             }).catch(function (error) {
                 console.log(error);
             })
+        }
     }
 }
