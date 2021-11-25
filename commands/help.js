@@ -14,7 +14,7 @@ module.exports = {
         { name: 'Music', value: 'loop(l), lyrics(ly), move(mv), np, pause, play(p), playlist(pl), queue(q), remove(rm), resume(r), search, shuffle, skip(s), skipto(st), stop, volume(v)' },
         { name: 'Orginal', value: 'help(h), invite, ping, uptime' },
         { name: 'Information', value: 'avatar, axolotl, bored, cat, covid, dict, dog, duck, fact, food, forza, fox, gif, http, iss, joke, member, meme, number, pic, quote, salim, waifu' },
-        { name: 'Response', value: 'abottleofwater, hello, joker, lanna, rules, say' },
+        { name: 'Response', value: 'abottleofwater(abow), hello, joker, lanna, rules, say' },
         { name: 'Game', value: 'flip, tictactoe(ttt)' },
         { name: 'Need help', value: 'Type [command] help' },
       );
