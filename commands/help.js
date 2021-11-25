@@ -15,7 +15,7 @@ module.exports = {
         { name: 'Orginal', value: 'help(h), invite, ping, uptime' },
         { name: 'Information', value: 'avatar, axolotl, bored, cat, covid, dict, dog, duck, fact, food, forza, fox, gif, http, iss, joke, member, meme, number, pic, quote, salim, waifu' },
         { name: 'Response', value: 'abottleofwater(abow), hello, joker, lanna, rules, say' },
-        { name: 'Game', value: 'flip, tictactoe(ttt)' },
+        { name: 'Game', value: 'connect4, flip, guesstheflag(gtf), guessthelogo(gtl), pokemon, rockpaperscissors(rps),snake, tictactoe(ttt)' },
         { name: 'Need help', value: 'Type [command] help' },
       );
 
