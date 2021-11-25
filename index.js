@@ -26,6 +26,8 @@ const { readdirSync } = require("fs");
 const { join } = require("path");
 const { TOKEN, PREFIX } = require("./util/Util");
 const i18n = require("./util/i18n");
+const mongoose = require('mongoose');
+const config = require("./config.json");
 
 const client = new Client({
   disableMentions: "everyone",
@@ -57,6 +59,16 @@ for (const file of commandFiles) {
   const command = require(join(__dirname, "commands", `${file}`));
   client.commands.set(command.name, command);
 }
+
+mongoose.connect(config.MONGODB_SRV, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true//,
+  //useFindAndModify: false
+}).then(()=>{
+  console.log('Connected to MongoDB')
+}).catch((err)=>{
+  console.log(err)
+});
 
 client.on("message", async (message) => {
   if (message.author.bot) return;
