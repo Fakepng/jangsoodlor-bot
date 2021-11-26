@@ -29,6 +29,7 @@ const i18n = require("./util/i18n");
 const mongoose = require('mongoose');
 const config = require("./config.json");
 const profileModel = require('./models/profileSchema');
+const cron = require('cron');
 
 const client = new Client({
   disableMentions: "everyone",
@@ -92,6 +93,17 @@ client.on("message", async (message) => {
   }catch(err) {
     console.log(err)
   }
+  
+  let scheduledMessage = new cron.CronJob('00 00 6 * * *', async () => {
+    await profileModel.updateMany({}, {
+      $set: {
+          reward: 0,
+      },
+    }
+  );
+  });
+              
+  scheduledMessage.start()
 
   const [, matchedPrefix] = message.content.match(prefixRegex);
 
