@@ -16,6 +16,7 @@ module.exports = {
         { name: 'Information', value: 'avatar, axolotl, bored, cat, covid, dict, dog, duck, fact, food, forza, fox, gif, http, iss, joke, member, meme, number, pic, quote, salim, waifu' },
         { name: 'Response', value: 'abottleofwater(abow), hello, joker, lanna, rules, say' },
         { name: 'Game', value: 'flip, tictactoe(ttt)' },
+        { name: 'Economy', value: 'balance(bal), deposit(dep), pay, withdraw(wd)' },
         { name: 'Need help', value: 'Type [command] help' },
       );
 

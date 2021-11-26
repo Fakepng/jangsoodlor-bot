@@ -28,6 +28,7 @@ const { TOKEN, PREFIX } = require("./util/Util");
 const i18n = require("./util/i18n");
 const mongoose = require('mongoose');
 const config = require("./config.json");
+const profileModel = require('./models/profileSchema');
 
 const client = new Client({
   disableMentions: "everyone",
@@ -77,6 +78,21 @@ client.on("message", async (message) => {
   const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(PREFIX)})\\s*`);
   if (!prefixRegex.test(message.content)) return;
 
+  let profileData;
+  try {
+    profileData = await profileModel.findOne({ userID: message.author.id });
+    if(!profileData){
+      let profile = await profileModel.create({
+        userID: message.author.id,
+        serverID: message.guild.id,
+        coins: 1000,
+        bank: 0
+    });     
+    }
+  }catch(err) {
+    console.log(err)
+  }
+
   const [, matchedPrefix] = message.content.match(prefixRegex);
 
   const args = message.content.slice(matchedPrefix.length).trim().split(/ +/);
@@ -111,7 +127,7 @@ client.on("message", async (message) => {
   setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
   try {
-    command.execute(message, args);
+    command.execute(message, args, profileData);
   } catch (error) {
     console.error(error);
     message.reply(i18n.__("common.errorCommand")).catch(console.error);
