@@ -11,6 +11,7 @@ module.exports = {
             message.channel.send(`Usage ${config.PREFIX}slots (100 ฿ per round win upto 500 ฿)`)
         }else {
             try{
+                if (profileData.coins < 100) return message.channel.send("You don't have enough money.");
                 await profileModel.findOneAndUpdate(
                     {
                         userID: message.author.id
