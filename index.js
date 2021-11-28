@@ -94,16 +94,26 @@ client.on("message", async (message) => {
     console.log(err)
   }
   
-  let scheduledMessage = new cron.CronJob('00 00 6 * * *', async () => {
+  let scheduledDailyReward = new cron.CronJob('00 00 6 * * *', async () => {
     await profileModel.updateMany({}, {
       $set: {
           reward: 0,
       },
     }
   );
+  });        
+  scheduledDailyReward.start()
+
+  let scheduledInterest = new cron.CronJob('1 0 * * SUN', async () => {
+    await profileModel.updateMany({}, {
+      $mul: {
+          bank: 1.001,
+      },
+    }
+  );
   });
               
-  scheduledMessage.start()
+  scheduledInterest.start()
 
   const [, matchedPrefix] = message.content.match(prefixRegex);
 
