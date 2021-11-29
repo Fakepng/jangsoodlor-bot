@@ -11,7 +11,7 @@ module.exports = {
         }else if(args == 'pool') {
             message.channel.send(`The price pool is now ${profileData.lottery_price_pool} ฿`);
         }else if(args == 'previous') {
-            message.channel.send(`The previous winner number ${profileData.previous_lottery_winner}\nThe amount of winner is ${profileData.previous_lottery_count}`);
+            message.channel.send(`The previous winner number ${profileData.previous_lottery_winner}\nThe amount of winner is ${profileData.previous_lottery_count}\nThe winner got ${profileData.previous_lottery_price} ฿`);
         }else if(!args[0]) {
             return message.channel.send("Lotto number must be in range [0001 - 9999]");
         }else {

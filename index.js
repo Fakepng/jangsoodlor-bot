@@ -131,7 +131,11 @@ client.on("message", async (message) => {
             await profileModel.updateMany({}, {
                 $set: {
                     lottery_number: 0,
+                    previous_lottery_price: 0,
                 },
+                $mul: {
+                    lottery_price_pool: 0.5,
+                }
             });
         }catch(err){
             console.log(err);
@@ -156,6 +160,7 @@ client.on("message", async (message) => {
             await profileModel.updateMany({}, {
                 $set: {
                     lottery_price_pool: 0,
+                    previous_lottery_price: winner[i].lottery_price_pool / count,
                 },
             });
         }catch(err){
@@ -167,7 +172,6 @@ client.on("message", async (message) => {
             $set: {
                 previous_lottery_winner: lotto_number,
                 previous_lottery_count: count,
-                previous_lottery_price: lottery_price_pool / count,
             },
         });
     }catch(err){
