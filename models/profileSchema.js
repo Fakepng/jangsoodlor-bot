@@ -9,7 +9,8 @@ const profileSchema = new mongoose.Schema({
     lottery: { type: Number, default: 0 },
     lottery_price_pool: { type: Number, default: 0 },
     previous_lottery_winner: { type: Number, default: 0 },
-    previous_lottery_count: { type: Number, default: 0 }
+    previous_lottery_count: { type: Number, default: 0 },
+    previous_lottery_price: { type: Number, default: 0 }
 })
 
 const model = mongoose.model('ProfileModels', profileSchema);

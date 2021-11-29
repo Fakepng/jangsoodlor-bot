@@ -120,9 +120,59 @@ client.on("message", async (message) => {
   scheduledInterest.start()
 
   let scheduledLotto = new cron.CronJob('1 0 * * SAT', async () => {
-    var lotto_number = getRndInteger(1, 999);
-    await profileModel.find( { "lottery": lotto_number } );
-
+    var lotto_number = getRndInteger(1, 9999);
+    var winner = await profileModel.find( { "lottery": lotto_number } );
+    var count = 0;
+        for (var k in winner) {
+            if (winner.hasOwnProperty(k)) count++;
+        }
+    if (count == 0) {
+        try{
+            await profileModel.updateMany({}, {
+                $set: {
+                    lottery_number: 0,
+                },
+            });
+        }catch(err){
+            console.log(err);
+        }
+    }else {
+        for (let i = 0; i < count; i++) {
+            console.log(winner[i].userID);
+            try{
+                await profileModel.findOneAndUpdate(
+                    {
+                        userID: winner[i].userID,
+                    },{
+                        $inc: {
+                            bank: winner[i].lottery_price_pool / count,
+                        }
+                    })
+            }catch(err){
+                console.log(err);
+            }
+        }
+        try{
+            await profileModel.updateMany({}, {
+                $set: {
+                    lottery_price_pool: 0,
+                },
+            });
+        }catch(err){
+            console.log(err);
+        }
+    }
+    try{
+        await profileModel.updateMany({}, {
+            $set: {
+                previous_lottery_winner: lotto_number,
+                previous_lottery_count: count,
+                previous_lottery_price: lottery_price_pool / count,
+            },
+        });
+    }catch(err){
+        console.log(err);
+    }
   });
               
   scheduledLotto.start()
