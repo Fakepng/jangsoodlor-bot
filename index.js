@@ -72,6 +72,10 @@ mongoose.connect(config.MONGODB_SRV, {
   console.log(err)
 });
 
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
 client.on("message", async (message) => {
   if (message.author.bot) return;
   if (!message.guild) return;
@@ -114,6 +118,14 @@ client.on("message", async (message) => {
   });
               
   scheduledInterest.start()
+
+  let scheduledLotto = new cron.CronJob('1 0 * * SAT', async () => {
+    var lotto_number = getRndInteger(1, 999);
+    await profileModel.find( { "lottery": lotto_number } );
+
+  });
+              
+  scheduledLotto.start()
 
   const [, matchedPrefix] = message.content.match(prefixRegex);
 
