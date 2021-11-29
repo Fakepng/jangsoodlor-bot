@@ -120,7 +120,7 @@ client.on("message", async (message) => {
   scheduledInterest.start()
 
   let scheduledLotto = new cron.CronJob('1 0 * * SAT', async () => {
-    var lotto_number = getRndInteger(1, 9999);
+    var lotto_number = getRndInteger(1, 999);
     var winner = await profileModel.find( { "lottery": lotto_number } );
     var count = 0;
         for (var k in winner) {
