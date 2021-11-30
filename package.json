@@ -20,7 +20,7 @@
     "ffmpeg-static": "^4.4.0",
     "i18n": "^0.13.3",
     "lyrics-finder": "^21.0.5",
-    "mongoose": "^6.0.13",
+    "mongoose": "^6.0.14",
     "node-spotify-api": "^1.1.1",
     "r2": "^2.0.1",
     "reconlx": "^2.5.1",
