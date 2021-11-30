@@ -11,13 +11,13 @@ module.exports = {
       .setDescription(i18n.__("help.embedDescription"))
       .setColor("#F8AA2A")
       .addFields(
-        { name: 'Music', value: 'loop(l), lyrics(ly), move(mv), np, pause, play(p), playlist(pl), queue(q), remove(rm), resume(r), search, shuffle, skip(s), skipto(st), stop, volume(v)' },
-        { name: 'Orginal', value: 'help(?), invite, ping, uptime' },
-        { name: 'Information', value: 'avatar, axolotl, bored, cat, covid, dict, dog, duck, fact, food, forza, fox, gif, http, iss, joke, member, meme, number, pic, quote, salim, waifu' },
-        { name: 'Response', value: 'abottleofwater(abow), hello, joker, lanna, rules, say' },
-        { name: 'Game', value: 'flip, tictactoe(ttt)' },
-        { name: 'Economy', value: 'balance(bal), dailyreward(dr), deposit(dep), pay, withdraw(wd)' },
-        { name: 'Casino', value: 'lotto, slots' },
+        { name: 'Music', value: '```loop(l), lyrics(ly), move(mv), np, pause, play(p), playlist(pl), queue(q), remove(rm), resume(r), search, shuffle, skip(s), skipto(st), stop, volume(v)```' },
+        { name: 'Orginal', value: '```help(?), invite, ping, uptime```' },
+        { name: 'Information', value: '```avatar, axolotl, bored, cat, covid, dict, dog, duck, fact, food, forza, fox, gif, http, iss, joke, member, meme, number, pic, quote, salim, waifu```' },
+        { name: 'Response', value: '```abottleofwater(abow), hello, joker, lanna, rules, say```' },
+        { name: 'Game', value: '```flip, tictactoe(ttt)```' },
+        { name: 'Economy', value: '```balance(bal), dailyreward(dr), deposit(dep), pay, withdraw(wd)```' },
+        { name: 'Casino', value: '```lotto, slots```' },
         { name: 'Need help', value: 'Type [command] help' },
       );
 
