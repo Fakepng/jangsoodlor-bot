@@ -8,7 +8,7 @@ module.exports = {
     description: "slots",
     async execute(message, args, profileData){
         if(args == 'help') {
-            message.channel.send(`Usage ${config.PREFIX}slots (100 ฿ per round win upto 500 ฿)`)
+            message.channel.send(`Usage ${config.PREFIX}slots (100 ${config.CURRENCY} per round win upto 500 ${config.CURRENCY})`)
         }else {
             try{
                 if (profileData.coins < 100) return message.channel.send("You don't have enough money.");
@@ -86,7 +86,7 @@ module.exports = {
             
             } else if($ === $$ && $ === $$$) {
             setTimeout(() => {
-              message.channel.send("You WON! 500 ฿")
+              message.channel.send(`You WON! 500 ${config.CURRENCY}`)
             }, 2000);
             try{
                 await profileModel.findOneAndUpdate(
@@ -102,7 +102,7 @@ module.exports = {
             }
             } else {
                 setTimeout(() => {
-                    message.channel.send("2 slots are equal... 200 ฿")
+                    message.channel.send(`2 slots are equal... 200 ${config.CURRENCY}`)
                  }, 2000);
                 try{
                     await profileModel.findOneAndUpdate(

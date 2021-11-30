@@ -22,7 +22,7 @@ module.exports = {
                             reward: 1,
                         }
                     })
-                return message.channel.send(`You have successfully received your reward 100 ฿`);
+                return message.channel.send(`You have successfully received your reward 100 ${config.CURRENCY}`);
             }catch(err){
                console.log(err);
             }

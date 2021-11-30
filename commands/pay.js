@@ -28,7 +28,7 @@ module.exports = {
                             coins: amount,
                         }
                     })
-                return message.channel.send(`You have successfully pay ${args[0]} ${amount} ฿`);
+                return message.channel.send(`You have successfully pay ${args[0]} ${amount} ${config.CURRENCY}`);
             }catch(err){
                console.log(err);
             }

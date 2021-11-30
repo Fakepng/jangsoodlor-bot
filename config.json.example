@@ -14,5 +14,6 @@
     "GIPHY_TOKEN": "https://developers.giphy.com/",
     "CAT_TOKEN": "https://thecatapi.com/",
     "DOG_TOKEN": "https://thedogapi.com/",
-    "MONGODB_SRV" : ""
+    "MONGODB_SRV" : "",
+    "MONEY_CURRENCY": ""
   }

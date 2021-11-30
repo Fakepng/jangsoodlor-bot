@@ -7,11 +7,11 @@ module.exports = {
     description: "lottery",
     async execute(message, args, profileData){
         if(args == 'help') {
-            message.channel.send(`Usage ${config.PREFIX}lotto <3 digit number can't be 000> 1000 ฿ per ticket.\nYou can buy only 1 ticket but another one for change number\nUsage ${config.PREFIX}lotto pool to see the price amount.\nUsage ${config.PREFIX}lotto previous to see previous winner.`)
+            message.channel.send(`Usage ${config.PREFIX}lotto <3 digit number can't be 000> 1000 ${config.CURRENCY} per ticket.\nYou can buy only 1 ticket but another one for change number\nUsage ${config.PREFIX}lotto pool to see the price amount.\nUsage ${config.PREFIX}lotto previous to see previous winner.`)
         }else if(args == 'pool') {
-            message.channel.send(`The price pool is now ${profileData.lottery_price_pool} ฿`);
+            message.channel.send(`The price pool is now ${profileData.lottery_price_pool} ${config.CURRENCY}`);
         }else if(args == 'previous') {
-            message.channel.send(`The previous winner number ${profileData.previous_lottery_winner}\nThe amount of winner is ${profileData.previous_lottery_count}\nThe winner got ${profileData.previous_lottery_price} ฿`);
+            message.channel.send(`The previous winner number ${profileData.previous_lottery_winner}\nThe amount of winner is ${profileData.previous_lottery_count}\nThe winner got ${profileData.previous_lottery_price} ${config.CURRENCY}`);
         }else if(!args[0]) {
             return message.channel.send("Lotto number must be in range [0001 - 999]");
         }else {
