@@ -22,7 +22,7 @@ module.exports = {
                             bank: -amount,
                         }
                     })
-                return message.channel.send(`You have successfully withdraw ${amount} ฿`);
+                return message.channel.send(`You have successfully withdraw ${amount} ${config.CURRENCY}`);
             }catch(err){
                console.log(err);
             }
