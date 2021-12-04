@@ -8,7 +8,11 @@ module.exports = {
     async execute(message, args, profileData){
         if(message.author.id != config.OWNER_ID) return message.channel.send("You are not the bot's owner.");
         switch(args[0]){
+            default:
+                message.channel.send(`Usage: ${config.PREFIX}eco <set/get/take/update>`);
             case "set":
+                default:
+                    message.channel.send(`Usage: ${config.PREFIX}eco set <wallet/bank> <user> <amount>`);
                 switch(args[1]){
                     case "wallet":
                         try{
@@ -43,6 +47,8 @@ module.exports = {
                 }
             break;
             case "give":
+                default:
+                    message.channel.send(`Usage: ${config.PREFIX}eco give <wallet/bank> <user> <amount>`);
                 switch(args[1]){
                     case "wallet":
                         try{
@@ -77,6 +83,8 @@ module.exports = {
                 }
             break;
             case "take":
+                default:
+                    message.channel.send(`Usage: ${config.PREFIX}eco take <wallet/bank> <user> <amount>`);
                 switch(args[1]){
                     case "wallet":
                         try{
@@ -111,10 +119,16 @@ module.exports = {
                 }
             break;
             case "update":
+                default:
+                    message.channel.send(`Usage: ${config.PREFIX}eco update <lotto>`);
                 switch(args[1]){
                     case "lotto":
+                        default:
+                    message.channel.send(`Usage: ${config.PREFIX}eco update lotto <pool>`);
                         switch(args[2]){
                             case "pool":
+                                default:
+                                    message.channel.send(`Usage: ${config.PREFIX}eco update lotto pool <amount>`);
                                 try{
                                     await profileModel.updateMany({}, {
                                         $set: {
