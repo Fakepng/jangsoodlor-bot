@@ -15,5 +15,6 @@
     "CAT_TOKEN": "https://thecatapi.com/",
     "DOG_TOKEN": "https://thedogapi.com/",
     "MONGODB_SRV" : "",
-    "MONEY_CURRENCY": ""
+    "MONEY_CURRENCY": "",
+    "OWNER_ID": ""
   }
