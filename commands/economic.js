@@ -284,6 +284,28 @@ module.exports = {
                             break;
                         }
                     break;
+                    // TODO: Find the way to make interet 2 decimal place
+                    // case "interest":
+                    //     try{
+                    //         profileModel.aggregate([
+                    //             { $project: { bank: { $round: [ "$bank", 2 ] } } }
+                    //         ]);
+                    //         return message.channel.send(`You have successfully update interest`);
+                    //     }catch(err){
+                    //         console.log(err);
+                    //     }
+                    // break;
+                }
+            break;
+            case "see":
+                if(message.mentions.members.size > 0){
+                    var seeUser = await profileModel.find( { "userID": message.mentions.users.first().id } );
+                    if(seeUser.length == 0) return message.channel.send(`${args[1]} is not yet registered`);
+                    message.channel.send(`${args[1]}'s data:\nWallet: ${seeUser[0].coins} ${config.CURRENCY}\nBank: ${seeUser[0].bank} ${config.CURRENCY}\nLotto: ${seeUser[0].lottery}`);
+                }else {
+                    var seeUser = await profileModel.find( { "userID": args[1] } );
+                    if(seeUser.length == 0) return message.channel.send(`${args[1]} is not yet registered`);
+                    message.channel.send(`${args[1]}'s data:\nWallet: ${seeUser[0].coins} ${config.CURRENCY}\nBank: ${seeUser[0].bank} ${config.CURRENCY}\nLotto: ${seeUser[0].lottery}`);
                 }
             break;
         }
