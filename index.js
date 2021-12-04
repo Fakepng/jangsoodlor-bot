@@ -107,7 +107,7 @@ client.on("message", async (message) => {
   );
   });        
   scheduledDailyReward.start()
-
+  
   let scheduledInterest = new cron.CronJob('1 0 * * SUN', async () => {
     await profileModel.updateMany({}, {
       $mul: {
