@@ -354,6 +354,31 @@ module.exports = {
                             break;
                         }
                     break;
+                    case "dr":
+                        if(args[2] == 'reset'){
+                            try{
+                                await profileModel.updateMany({}, {
+                                    $set: {
+                                        reward: 0,
+                                    },
+                                });
+                                return message.channel.send(`You have successfully reset daily reward`);
+                            }catch(err){
+                                console.log(err);
+                            }
+                        }else if(args[2] == 'off'){
+                            try{
+                                await profileModel.updateMany({}, {
+                                    $set: {
+                                        reward: 1,
+                                    },
+                                });
+                                return message.channel.send(`You have successfully turn off daily reward for a day`);
+                            }catch(err){
+                                console.log(err);
+                            }
+                        }
+                    break;
                 }
             break;
             case "see":
