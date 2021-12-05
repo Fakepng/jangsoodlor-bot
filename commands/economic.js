@@ -1,5 +1,6 @@
 const config = require("../config.json");
 const profileModel = require('../models/profileSchema');
+var round = require('mongo-round');
 
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
@@ -295,6 +296,29 @@ module.exports = {
                     //         console.log(err);
                     //     }
                     // break;
+                    case "interest":
+                        var account = await profileModel.find();
+                        var count = 0;
+                        for (var k in account) {
+                            if (account.hasOwnProperty(k)) count++;
+                        }
+                        console.log(count);
+                        for (i = 0; i < count; i++) {
+                            try{
+                                await profileModel.findOneAndUpdate(
+                                    {
+                                        userID: account[i].userID,
+                                    },{
+                                        $inc: {
+                                            bank: Math.round((account[i].bank * 0.01) * 100) / 100,
+                                        }
+                                    })
+                                    message.channel.send(`You have successfully update interest`);
+                            }catch(err){
+                                console.log(err);
+                            }
+                        }
+                    break;
                 }
             break;
             case "see":

@@ -4,7 +4,7 @@ const profileSchema = new mongoose.Schema({
     userID: { type: String, require: true, unique: true },
     serverID: { type: String, require: true },
     coins: { type: Number, default: 1000 },
-    bank: { type: Number },
+    bank: { type: Number, default: 0},
     reward: { type: Number, default: 0 },
     lottery: { type: Number, default: 0 },
     lottery_price_pool: { type: Number, default: 0 },
