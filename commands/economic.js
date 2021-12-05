@@ -1,6 +1,5 @@
 const config = require("../config.json");
 const profileModel = require('../models/profileSchema');
-var round = require('mongo-round');
 
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
@@ -285,24 +284,12 @@ module.exports = {
                             break;
                         }
                     break;
-                    // TODO: Find the way to make interet 2 decimal place
-                    // case "interest":
-                    //     try{
-                    //         profileModel.aggregate([
-                    //             { $project: { bank: { $round: [ "$bank", 2 ] } } }
-                    //         ]);
-                    //         return message.channel.send(`You have successfully update interest`);
-                    //     }catch(err){
-                    //         console.log(err);
-                    //     }
-                    // break;
                     case "interest":
                         var account = await profileModel.find();
                         var count = 0;
                         for (var k in account) {
                             if (account.hasOwnProperty(k)) count++;
                         }
-                        console.log(count);
                         for (i = 0; i < count; i++) {
                             try{
                                 await profileModel.findOneAndUpdate(
@@ -313,10 +300,58 @@ module.exports = {
                                             bank: Math.round((account[i].bank * 0.01) * 100) / 100,
                                         }
                                     })
-                                    message.channel.send(`You have successfully update interest`);
                             }catch(err){
                                 console.log(err);
                             }
+                        }
+                        message.channel.send(`You have successfully update interest`);
+                    break;
+                    case "round":
+                        switch(args[2]){
+                            case "coins":
+                                var account = await profileModel.find();
+                                var count = 0;
+                                for (var k in account) {
+                                    if (account.hasOwnProperty(k)) count++;
+                                }
+                                for (i = 0; i < count; i++) {
+                                    try{
+                                        await profileModel.findOneAndUpdate(
+                                        {
+                                            userID: account[i].userID,
+                                        },{
+                                            $set: {
+                                                coins: Math.round(account[i].coins * 100) / 100,
+                                            }
+                                        })
+                                    }catch(err){
+                                    console.log(err);
+                                    }
+                                }
+                                message.channel.send(`You have successfully round everyone wallet`);
+                            break;
+                            case "bank":
+                                var account = await profileModel.find();
+                                var count = 0;
+                                for (var k in account) {
+                                    if (account.hasOwnProperty(k)) count++;
+                                }
+                                for (i = 0; i < count; i++) {
+                                    try{
+                                        await profileModel.findOneAndUpdate(
+                                        {
+                                            userID: account[i].userID,
+                                        },{
+                                            $set: {
+                                                bank: Math.round(account[i].bank * 100) / 100,
+                                            }
+                                        })
+                                    }catch(err){
+                                    console.log(err);
+                                    }
+                                }
+                                message.channel.send(`You have successfully round everyone bank`);
+                            break;
                         }
                     break;
                 }
