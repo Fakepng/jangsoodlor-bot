@@ -44,74 +44,132 @@ module.exports = {
                             console.log(err);
                         }
                     break;
+                    default:
+                        message.channel.send(`Usage:${config.PREFIX}eco set <wallet/bank> <user> <amount>`);
                 }
             break;
             case "give":
                 switch(args[1]){
                     case "wallet":
-                        try{
-                            await profileModel.findOneAndUpdate(
-                                {
-                                    userID: message.mentions.users.first().id
-                                },{
+                        if(args[2] == 'everyone'){
+                            try{
+                                await profileModel.updateMany({}, {
                                     $inc: {
                                         coins: args[3],
-                                    }
-                                })
-                            return message.channel.send(`You have successfully gave ${args[2]} ${args[3]} ${config.CURRENCY} in wallet`);
-                        }catch(err){
-                            console.log(err);
+                                    },
+                                });
+                                return message.channel.send(`You have successfully gave everyone ${args[3]} ${config.CURRENCY} in wallet`);
+                            }catch(err){
+                                console.log(err);
+                            }
+                        }else{
+                            try{
+                                await profileModel.findOneAndUpdate(
+                                    {
+                                        userID: message.mentions.users.first().id
+                                    },{
+                                        $inc: {
+                                            coins: args[3],
+                                        }
+                                    })
+                                return message.channel.send(`You have successfully gave ${args[2]} ${args[3]} ${config.CURRENCY} in wallet`);
+                            }catch(err){
+                                console.log(err);
+                            }
                         }
                     break;
                     case "bank":
-                        try{
-                            await profileModel.findOneAndUpdate(
-                                {
-                                    userID: message.mentions.users.first().id
-                                },{
+                        if(args[2] == 'everyone'){
+                            try{
+                                await profileModel.updateMany({}, {
                                     $inc: {
                                         bank: args[3],
-                                    }
-                                })
-                            return message.channel.send(`You have successfully gave ${args[2]} ${args[3]} ${config.CURRENCY} in bank`);
-                        }catch(err){
-                            console.log(err);
+                                    },
+                                });
+                                return message.channel.send(`You have successfully gave everyone ${args[3]} ${config.CURRENCY} in bank`);
+                            }catch(err){
+                                console.log(err);
+                            }
+                        }else{
+                            try{
+                                await profileModel.findOneAndUpdate(
+                                    {
+                                        userID: message.mentions.users.first().id
+                                    },{
+                                        $inc: {
+                                            bank: args[3],
+                                        }
+                                    })
+                                return message.channel.send(`You have successfully gave ${args[2]} ${args[3]} ${config.CURRENCY} in bank`);
+                            }catch(err){
+                                console.log(err);
+                            }
                         }
                     break;
+                    default:
+                        message.channel.send(`Usage:${config.PREFIX}eco give <wallet/bank> <user> <amount>`);
                 }
             break;
             case "take":
                 switch(args[1]){
                     case "wallet":
-                        try{
-                            await profileModel.findOneAndUpdate(
-                                {
-                                    userID: message.mentions.users.first().id
-                                },{
+                        if(args[2] == 'everyone'){
+                            try{
+                                await profileModel.updateMany({}, {
                                     $inc: {
                                         coins: -args[3],
-                                    }
-                                })
-                            return message.channel.send(`You have successfully took from ${args[2]}'s wallet ${args[3]} ${config.CURRENCY}`);
-                        }catch(err){
-                            console.log(err);
+                                    },
+                                });
+                                return message.channel.send(`You have successfully took everyone's wallet ${args[3]} ${config.CURRENCY}`);
+                            }catch(err){
+                                console.log(err);
+                            }
+                        }else{
+                            try{
+                                await profileModel.findOneAndUpdate(
+                                    {
+                                        userID: message.mentions.users.first().id
+                                    },{
+                                        $inc: {
+                                            coins: -args[3],
+                                        }
+                                    })
+                                return message.channel.send(`You have successfully took from ${args[2]}'s wallet ${args[3]} ${config.CURRENCY}`);
+                            }catch(err){
+                                console.log(err);
+                            }
                         }
                     break;
                     case "bank":
-                        try{
-                            await profileModel.findOneAndUpdate(
-                                {
-                                    userID: message.mentions.users.first().id
-                                },{
+                        if(args[2] == 'everyone'){
+                            try{
+                                await profileModel.updateMany({}, {
                                     $inc: {
                                         bank: -args[3],
-                                    }
-                                })
-                            return message.channel.send(`You have successfully took from ${args[2]}'s bank ${args[3]} ${config.CURRENCY}`);
-                        }catch(err){
-                            console.log(err);
+                                    },
+                                });
+                                return message.channel.send(`You have successfully took from everyone's bank ${args[3]} ${config.CURRENCY}`);
+                            }catch(err){
+                                console.log(err);
+                            }
+                        }else{
+                            try{
+                                await profileModel.findOneAndUpdate(
+                                    {
+                                        userID: message.mentions.users.first().id
+                                    },{
+                                        $inc: {
+                                            bank: -args[3],
+                                        }
+                                    })
+                                return message.channel.send(`You have successfully took from ${args[2]}'s bank ${args[3]} ${config.CURRENCY} in wallet`);
+                            }catch(err){
+                                console.log(err);
+                            }
                         }
                     break;
+                    default:
+                        message.channel.send(`Usage:${config.PREFIX}eco took <wallet/bank> <user> <amount>`);
                 }
             break;
             case "update":
@@ -119,6 +177,7 @@ module.exports = {
                     case "lotto":
                         switch(args[2]){
                             case "pool":
+                                if(!args[3]) return message.channel.send(`Usage:${config.PREFIX}eco update lotto pool <number>`);
                                 try{
                                     await profileModel.updateMany({}, {
                                         $set: {
@@ -131,7 +190,8 @@ module.exports = {
                                 }
                             break;
                             case "pick":
-                                if(!args[3]){
+                                if(!args[3]) return message.channel.send(`Usage:${config.PREFIX}eco update lotto pick <random/number>`);
+                                if(args[3] == 'random'){
                                     var lotto_number = getRndInteger(1, 99);
                                     var winner = await profileModel.find( { "lottery": lotto_number } );
                                     var count = 0;
@@ -255,6 +315,7 @@ module.exports = {
                                 
                             break;
                             case "ticket":
+                                if(!args[3]) return message.channel.send(`Usage:${config.PREFIX}eco update lotto ticket <everyone/mention> <number>`);
                                 if(args[3] == 'everyone'){
                                     try{
                                         await profileModel.updateMany({}, {
@@ -282,6 +343,8 @@ module.exports = {
                                     }
                                 }
                             break;
+                            default:
+                                message.channel.send(`Usage:${config.PREFIX}eco update lotto <pool/pick/ticket>`);
                         }
                     break;
                     case "interest":
@@ -308,7 +371,7 @@ module.exports = {
                     break;
                     case "round":
                         switch(args[2]){
-                            case "coins":
+                            case "wallet":
                                 var account = await profileModel.find();
                                 var count = 0;
                                 for (var k in account) {
@@ -352,6 +415,8 @@ module.exports = {
                                 }
                                 message.channel.send(`You have successfully round everyone bank`);
                             break;
+                            default:
+                                message.channel.send(`Usage:${config.PREFIX}eco update round <wallet/bank>`);
                         }
                     break;
                     case "dr":
@@ -377,8 +442,12 @@ module.exports = {
                             }catch(err){
                                 console.log(err);
                             }
+                        }else {
+                            message.channel.send(`Usage:${config.PREFIX}eco update dr <reset/off>`);
                         }
                     break;
+                    default:
+                        message.channel.send(`Usage:${config.PREFIX}eco update <lotto/interest/round/dr>`);
                 }
             break;
             case "see":
@@ -392,6 +461,8 @@ module.exports = {
                     message.channel.send(`${args[1]}'s data:\nWallet: ${seeUser[0].coins} ${config.CURRENCY}\nBank: ${seeUser[0].bank} ${config.CURRENCY}\nLotto: ${seeUser[0].lottery}`);
                 }
             break;
+            default:
+                message.channel.send(`Usage:${config.PREFIX}eco <set/give/take/update/see>`);
         }
     }   
 }
