@@ -7,7 +7,26 @@ module.exports = {
     description: "withdraw",
     async execute(message, args, profileData){
         if(args == 'help') {
-            message.channel.send(`Usage ${config.PREFIX}wd <amount>`)
+            message.channel.send(`Usage ${config.PREFIX}wd <amount> or\n${config.PREFIX}wd bank to withdraw all from bank`);
+        }else if(args == 'bank'){
+            var user = await profileModel.find( { "userID": message.author.id } );
+            try{
+                await profileModel.findOneAndUpdate(
+                    {
+                        userID: message.author.id
+                    },{
+                        $inc: {
+                            coins: user[0].bank,
+                        },
+                        $set: {
+                            bank: 0
+                        }
+                    }
+                )
+                return message.channel.send(`You have successfully withdraw ${user[0].bank} ${config.CURRENCY}`)
+            }catch(err){
+                console.log(err);
+            }
         }else {
             const amount = args[0];
             if(amount % 1 != 0 || amount <= 0) return message.channel.send("Withdraw amount must be whole number.");
