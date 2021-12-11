@@ -8,6 +8,7 @@ echo "Copying config file..."
 cd
 cp config.json jangsoodlor-bot
 echo "Copying sound file..."
+rm -rf ~/jangsoodlor-bot/sounds
 cd sounds
 cp * ~/jangsoodlor-bot/sounds
 echo "Starting the bot..."
