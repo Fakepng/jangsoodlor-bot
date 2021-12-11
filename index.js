@@ -114,7 +114,6 @@ client.on("message", async (message) => {
     for (var k in account) {
         if (account.hasOwnProperty(k)) count++;
     }
-    console.log(count);
     for (i = 0; i < count; i++) {
         try{
             await profileModel.findOneAndUpdate(
@@ -124,8 +123,7 @@ client.on("message", async (message) => {
                     $inc: {
                         bank: Math.round((account[i].bank * 0.01) * 100) / 100,
                     }
-                })
-                message.channel.send(`You have successfully update interest`);
+                });
         }catch(err){
             console.log(err);
         }
