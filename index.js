@@ -30,6 +30,7 @@ const mongoose = require('mongoose');
 const config = require("./config.json");
 const profileModel = require('./models/profileSchema');
 const cron = require('cron');
+require('log-timestamp');
 
 const client = new Client({
   disableMentions: "everyone",

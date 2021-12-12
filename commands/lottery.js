@@ -40,6 +40,7 @@ module.exports = {
                         lottery_price_pool: 1000,
                     },
                 });
+                console.log(`${message.author.username}, ${message.author.id} bought a lotto ticket for ${lotto_number}`);
                 return message.channel.send(`You have successfully buy lotto`);
             }catch(err){
                console.log(err);

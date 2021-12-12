@@ -24,6 +24,7 @@ module.exports = {
                                         coins: args[3],
                                     }
                                 })
+                            console.log(`${message.mentions.users.first().username}, ${message.mentions.users.first().id}'s wallet has been set to ${args[3]}`);
                             return message.channel.send(`You have successfully set ${args[2]} wallet to ${args[3]} ${config.CURRENCY}`);
                         }catch(err){
                             console.log(err);
@@ -39,6 +40,7 @@ module.exports = {
                                         bank: args[3],
                                     }
                                 })
+                            console.log(`${message.mentions.users.first().username}, ${message.mentions.users.first().id}'s bank has been set to ${args[3]}`);
                             return message.channel.send(`You have successfully set ${args[2]} bank to ${args[3]} ${config.CURRENCY}`);
                         }catch(err){
                             console.log(err);
@@ -58,6 +60,7 @@ module.exports = {
                                         coins: args[3],
                                     },
                                 });
+                                console.log(`Everyone's wallet has been increased by ${args[3]}`);
                                 return message.channel.send(`You have successfully gave everyone ${args[3]} ${config.CURRENCY} in wallet`);
                             }catch(err){
                                 console.log(err);
@@ -72,6 +75,7 @@ module.exports = {
                                             coins: args[3],
                                         }
                                     })
+                                console.log(`${message.mentions.users.first().username}, ${message.mentions.users.first().id}'s wallet has been increased by ${args[3]}`);
                                 return message.channel.send(`You have successfully gave ${args[2]} ${args[3]} ${config.CURRENCY} in wallet`);
                             }catch(err){
                                 console.log(err);
@@ -86,6 +90,7 @@ module.exports = {
                                         bank: args[3],
                                     },
                                 });
+                                console.log(`Everyone's bank has been increased by ${args[3]}`);
                                 return message.channel.send(`You have successfully gave everyone ${args[3]} ${config.CURRENCY} in bank`);
                             }catch(err){
                                 console.log(err);
@@ -100,6 +105,7 @@ module.exports = {
                                             bank: args[3],
                                         }
                                     })
+                                console.log(`${message.mentions.users.first().username}, ${message.mentions.users.first().id}'s bank has been increased by ${args[3]}`);
                                 return message.channel.send(`You have successfully gave ${args[2]} ${args[3]} ${config.CURRENCY} in bank`);
                             }catch(err){
                                 console.log(err);
@@ -120,6 +126,7 @@ module.exports = {
                                         coins: -args[3],
                                     },
                                 });
+                                console.log(`Everyone's wallet has been decreased by ${args[3]}`);
                                 return message.channel.send(`You have successfully took everyone's wallet ${args[3]} ${config.CURRENCY}`);
                             }catch(err){
                                 console.log(err);
@@ -134,6 +141,7 @@ module.exports = {
                                             coins: -args[3],
                                         }
                                     })
+                                console.log(`${message.mentions.users.first().username}, ${message.mentions.users.first().id}'s wallet has been decreased by ${args[3]}`);
                                 return message.channel.send(`You have successfully took from ${args[2]}'s wallet ${args[3]} ${config.CURRENCY}`);
                             }catch(err){
                                 console.log(err);
@@ -148,6 +156,7 @@ module.exports = {
                                         bank: -args[3],
                                     },
                                 });
+                                console.log(`Everyone's bank has been decreased by ${args[3]}`);
                                 return message.channel.send(`You have successfully took from everyone's bank ${args[3]} ${config.CURRENCY}`);
                             }catch(err){
                                 console.log(err);
@@ -162,6 +171,7 @@ module.exports = {
                                             bank: -args[3],
                                         }
                                     })
+                                console.log(`${message.mentions.users.first().username}, ${message.mentions.users.first().id}'s bank has been decreased by ${args[3]}`);
                                 return message.channel.send(`You have successfully took from ${args[2]}'s bank ${args[3]} ${config.CURRENCY} in wallet`);
                             }catch(err){
                                 console.log(err);
@@ -184,6 +194,7 @@ module.exports = {
                                             lottery_price_pool: args[3],
                                         }
                                     });
+                                    console.log(`Lotto pool has been updated to ${args[3]}`);
                                     return message.channel.send(`You have successfully update lotto price pool to ${args[3]} ${config.CURRENCY}`);
                                 }catch(err){
                                     console.log(err);
@@ -337,6 +348,7 @@ module.exports = {
                                                     lottery: args[4],
                                                 }
                                             })
+                                        console.log(`${message.mentions.users.first().username}, ${message.mentions.users.first().id}'s lotto ticket has been updated to ${args[4]}`);
                                         return message.channel.send(`You have successfully set lotto ticket of ${args[3]} to ${args[4]}`);
                                     }catch(err){
                                         console.log(err);
@@ -367,6 +379,7 @@ module.exports = {
                                 console.log(err);
                             }
                         }
+                        console.log(`Interest has been added to all accounts`);
                         message.channel.send(`You have successfully update interest`);
                     break;
                     case "round":
@@ -391,6 +404,7 @@ module.exports = {
                                     console.log(err);
                                     }
                                 }
+                                console.log(`Wallet has been rounded`);
                                 message.channel.send(`You have successfully round everyone wallet`);
                             break;
                             case "bank":
@@ -413,6 +427,7 @@ module.exports = {
                                     console.log(err);
                                     }
                                 }
+                                console.log(`Bank has been rounded`);
                                 message.channel.send(`You have successfully round everyone bank`);
                             break;
                             default:
@@ -427,6 +442,7 @@ module.exports = {
                                         reward: 0,
                                     },
                                 });
+                                console.log(`Reward has been reset`);
                                 return message.channel.send(`You have successfully reset daily reward`);
                             }catch(err){
                                 console.log(err);
@@ -438,6 +454,7 @@ module.exports = {
                                         reward: 1,
                                     },
                                 });
+                                console.log(`Reward has been turned off`);
                                 return message.channel.send(`You have successfully turn off daily reward for a day`);
                             }catch(err){
                                 console.log(err);

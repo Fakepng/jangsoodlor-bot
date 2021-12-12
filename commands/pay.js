@@ -28,6 +28,7 @@ module.exports = {
                             coins: amount,
                         }
                     })
+                console.log(`${message.author.username}, ${message.author.id} has paid ${message.mentions.users.first().username}, ${message.mentions.users.first().id} ${amount} ${config.CURRENCY}`)
                 return message.channel.send(`You have successfully pay ${args[0]} ${amount} ${config.CURRENCY}`);
             }catch(err){
                console.log(err);

@@ -23,6 +23,7 @@ module.exports = {
                         }
                     }
                 )
+                console.log(`${message.author.username}, ${message.author.id} withdrew ${user[0].bank} from bank`);
                 return message.channel.send(`You have successfully withdraw ${user[0].bank} ${config.CURRENCY}`)
             }catch(err){
                 console.log(err);
@@ -41,6 +42,7 @@ module.exports = {
                             bank: -amount,
                         }
                     })
+                console.log(`${message.author.username}, ${message.author.id} withdrew ${amount} from bank`);
                 return message.channel.send(`You have successfully withdraw ${amount} ${config.CURRENCY}`);
             }catch(err){
                console.log(err);

@@ -20,6 +20,7 @@ module.exports = {
                             coins: -amount,
                         }
                     })
+                console.log(`${message.author.username}, ${message.author.id} has voided ${amount} ${config.CURRENCY}`);
                 return message.channel.send(`You have successfully void ${amount} ${config.CURRENCY}`);
             }catch(err){
                console.log(err);

@@ -22,6 +22,7 @@ module.exports = {
                             reward: 1,
                         }
                     })
+                console.log(`${message.author.username}, ${message.author.id} has received their daily reward`);
                 return message.channel.send(`You have successfully received your reward 100 ${config.CURRENCY}`);
             }catch(err){
                console.log(err);
