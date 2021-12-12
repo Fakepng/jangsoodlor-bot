@@ -18,6 +18,9 @@ Jangsoodlor-Bot is a Discord bot developed mostly by [Fakepng](https://github.co
 2.7 **(Optional)** DOG Token [Guide](https://thedogapi.com/)
 3. Node.js v14.0.0 or newer
 
+## Feature
+> hidden command (prefix)eco to manage economic.
+
 ## How to install a bot
 
 1. Open terminal in home directory.
