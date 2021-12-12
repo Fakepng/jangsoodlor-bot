@@ -1,5 +1,4 @@
 # This bot is base on [eritislami/evobot](https://github.com/eritislami/evobot)
-_______________________________________________________________
 
 Jangsoodlor-Bot is a Discord bot developed mostly by [Fakepng](https://github.com/Fakepng) and [微博使用者](https://github.com/BioB3). And of course, its namesake [Jangsoodlor](https://github.com/Jangsoodlor). This bot can do many things such as play musics, retrieve server member's avatar, say some inspirational quote and much more. This bot is licensed under MIT license so feel free to fork it. Also we do not have much coding experiences yet. In fact we are just random high-schoolers who have too much free time. Any suggestions regarding the bot are also welcomed.
 
@@ -8,13 +7,13 @@ Jangsoodlor-Bot is a Discord bot developed mostly by [Fakepng](https://github.co
 ## Requirements
 
 1. Discord Bot Token [Guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)
-2. YouTube Data API v3 Key [Guide](https://developers.google.com/youtube/v3/getting-started)\
-2.1 Spotify API [Guide](https://developer.spotify.com/)\
-2.2 Mongodb_srv [Guide](https://www.youtube.com/watch?v=Ej05tq1220A)\
-2.3 Owner ID [Guide](https://techswift.org/2020/04/22/how-to-find-your-user-id-on-discord/)\
-2.4 **(Optional)** Soundcloud Client ID [Guide](https://github.com/zackradisic/node-soundcloud-downloader#client-id)\
-2.5 **(Optional)** GIPHY Token [Guide](https://developers.giphy.com/)\
-2.6 **(Optional)** CAT Token [Guide](https://thecatapi.com/)\
+2. YouTube Data API v3 Key [Guide](https://developers.google.com/youtube/v3/getting-started)  
+2.1 Spotify API [Guide](https://developer.spotify.com/)  
+2.2 Mongodb_srv [Guide](https://www.youtube.com/watch?v=Ej05tq1220A)  
+2.3 Owner ID [Guide](https://techswift.org/2020/04/22/how-to-find-your-user-id-on-discord/)  
+2.4 **(Optional)** Soundcloud Client ID [Guide](https://github.com/zackradisic/node-soundcloud-downloader#client-id)  
+2.5 **(Optional)** GIPHY Token [Guide](https://developers.giphy.com/)  
+2.6 **(Optional)** CAT Token [Guide](https://thecatapi.com/)  
 2.7 **(Optional)** DOG Token [Guide](https://thedogapi.com/)
 3. Node.js v14.0.0 or newer
 
@@ -99,7 +98,7 @@ Command | Aliases | Description
 balance | bal | Show your daily reward
 deposit| dep | Deposit money from your wallet into your bank account
 pay| - | Give your money away to certain person
-void| - | Throw your money away if you a
+void| - | Trow away your money
 withdraw| wd | Withdraw money from your bank account into your wallet
 
 ### Casino
