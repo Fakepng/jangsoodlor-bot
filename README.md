@@ -9,12 +9,12 @@ Jangsoodlor-Bot is a Discord bot developed mostly by [Fakepng](https://github.co
 
 1. Discord Bot Token [Guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)
 2. YouTube Data API v3 Key [Guide](https://developers.google.com/youtube/v3/getting-started)\
-2.1 Spotify API [Guide](https://developer.spotify.com/)
-2.2 Mongodb_srv [Guide](https://www.youtube.com/watch?v=Ej05tq1220A)
-2.3 Owner ID [Guide](https://techswift.org/2020/04/22/how-to-find-your-user-id-on-discord/)
-2.4 **(Optional)** Soundcloud Client ID [Guide](https://github.com/zackradisic/node-soundcloud-downloader#client-id)
-2.5 **(Optional)** GIPHY Token [Guide](https://developers.giphy.com/)
-2.6 **(Optional)** CAT Token [Guide](https://thecatapi.com/)
+2.1 Spotify API [Guide](https://developer.spotify.com/)\
+2.2 Mongodb_srv [Guide](https://www.youtube.com/watch?v=Ej05tq1220A)\
+2.3 Owner ID [Guide](https://techswift.org/2020/04/22/how-to-find-your-user-id-on-discord/)\
+2.4 **(Optional)** Soundcloud Client ID [Guide](https://github.com/zackradisic/node-soundcloud-downloader#client-id)\
+2.5 **(Optional)** GIPHY Token [Guide](https://developers.giphy.com/)\
+2.6 **(Optional)** CAT Token [Guide](https://thecatapi.com/)\
 2.7 **(Optional)** DOG Token [Guide](https://thedogapi.com/)
 3. Node.js v14.0.0 or newer
 
