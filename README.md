@@ -5,17 +5,21 @@ Jangsoodlor-Bot is a discord bot developed mostly by [Fakepng](https://github.co
 
 ![jangsoodlor-bot avatar](/assets/images/Jangsoodlor-bot.png)
 
+## Requirements
+
+1. Discord Bot Token [Guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)
+
 ## How to install a bot
 
-1.Open terminal in home directory.\
-2.Run `git clone https://github.com/Fakpeng/jangsoodlor-bot`\
-3.Change directory to jangsoodlor-bot\
-4.`npm install`\
-5.Fill token in side config.json.example file and rename it to config.json\
-6.Copy config.json, sounds folder, install.sh and place in home directory.\
-7.Run `node .`
+1. Open terminal in home directory.\
+2. Run `git clone https://github.com/Fakpeng/jangsoodlor-bot`\
+3. Change directory to jangsoodlor-bot\
+4. `npm install`\
+5. Fill token in side config.json.example file and rename it to config.json\
+6. Copy config.json, sounds folder, install.sh and place in home directory.\
+7. Run `node .`
 
 ## How to update the bot
 
-1.Open terminal in home directory.\
-2.Run `bash install.sh`
+1. Open terminal in home directory.\
+2. Run `bash install.sh`
