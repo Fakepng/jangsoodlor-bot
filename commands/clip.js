@@ -1,5 +1,6 @@
 const i18n = require("../util/i18n");
 const fs = require("fs");
+const config = require("../config.json");
 
 module.exports = {
   name: "clip",
@@ -8,7 +9,7 @@ module.exports = {
     const { channel } = message.member.voice;
     const queue = message.client.queue.get(message.guild.id);
 
-    if (!args.length) return message.reply(i18n.__("clip.usagesReply")).catch(console.error);
+    if (!args.length) return message.reply(`Usage ${config.PREFIX}clip <name>`).catch(console.error);
     if (queue) return message.reply(i18n.__("clip.errorQueue"));
     if (!channel) return message.reply(i18n.__("clip.errorNotChannel")).catch(console.error);
 
