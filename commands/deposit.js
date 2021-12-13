@@ -42,7 +42,7 @@ module.exports = {
                             bank: amount,
                         }
                     })
-                console.log(`${message.author.username}, ${message.author.id} has deposited ${user[0].coins}`);
+                console.log(`${message.author.username}, ${message.author.id} has deposited ${amount}`);
                 return message.channel.send(`You have successfully deposited ${amount} ${config.CURRENCY}`);
             }catch(err){
                console.log(err);
