@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@discordjs/opus": "^0.5.3",
-    "array-move": "^3.0.1",
+    "array-move": "^4.0.0",
     "cron": "^1.8.2",
     "discord-player": "^5.1.0",
     "discord-tictactoe": "^2.1.1",
