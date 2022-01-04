@@ -104,7 +104,7 @@ withdraw| wd | Withdraw money from your bank account into your wallet
 ### Casino
 Command | Aliases | Description
 --- | --- | ---
-lotto | - | Play lotto
+lotto | - | `No longer available`
 slots | - | Play slots
 
 > hidden command (prefix)eco to manage economic.
