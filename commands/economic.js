@@ -184,181 +184,181 @@ module.exports = {
             break;
             case "update":
                 switch(args[1]){
-                    case "lotto":
-                        switch(args[2]){
-                            case "pool":
-                                if(!args[3]) return message.channel.send(`Usage:${config.PREFIX}eco update lotto pool <number>`);
-                                try{
-                                    await profileModel.updateMany({}, {
-                                        $set: {
-                                            lottery_price_pool: args[3],
-                                        }
-                                    });
-                                    console.log(`Lotto pool has been updated to ${args[3]}`);
-                                    return message.channel.send(`You have successfully update lotto price pool to ${args[3]} ${config.CURRENCY}`);
-                                }catch(err){
-                                    console.log(err);
-                                }
-                            break;
-                            case "pick":
-                                if(!args[3]) return message.channel.send(`Usage:${config.PREFIX}eco update lotto pick <random/number>`);
-                                if(args[3] == 'random'){
-                                    var lotto_number = getRndInteger(1, 99);
-                                    var winner = await profileModel.find( { "lottery": lotto_number } );
-                                    var count = 0;
-                                        for (var k in winner) {
-                                            if (winner.hasOwnProperty(k)) count++;
-                                        }
-                                    if (count == 0) {
-                                        try{
-                                            await profileModel.updateMany({}, {
-                                                $set: {
-                                                    lottery: 0,
-                                                    previous_lottery_price: 0,
-                                                },
-                                                $mul: {
-                                                    lottery_price_pool: 0.5,
-                                                }
-                                            });
-                                        }catch(err){
-                                            console.log(err);
-                                        }
-                                    }else {
-                                        for (let i = 0; i < count; i++) {
-                                            console.log(winner[i].userID);
-                                            try{
-                                                await profileModel.findOneAndUpdate(
-                                                    {
-                                                        userID: winner[i].userID,
-                                                    },{
-                                                        $inc: {
-                                                            bank: winner[i].lottery_price_pool / count,
-                                                        }
-                                                    })
-                                            }catch(err){
-                                                console.log(err);
-                                            }
-                                        }
-                                        try{
-                                            await profileModel.updateMany({}, {
-                                                $set: {
-                                                    lottery_price_pool: 0,
-                                                    previous_lottery_price: winner[0].lottery_price_pool / count,
-                                                },
-                                            });
-                                        }catch(err){
-                                            console.log(err);
-                                        }
-                                    }
-                                    try{
-                                        await profileModel.updateMany({}, {
-                                            $set: {
-                                                previous_lottery_winner: lotto_number,
-                                                previous_lottery_count: count,
-                                                lottery: 0,
-                                            },
-                                        });
-                                        return message.channel.send(`You have successfully pick lotto ticket`);
-                                    }catch(err){
-                                        console.log(err);
-                                    }
-                                }else{
-                                    var lotto_number = args[3];
-                                    var winner = await profileModel.find( { "lottery": lotto_number } );
-                                    var count = 0;
-                                        for (var k in winner) {
-                                            if (winner.hasOwnProperty(k)) count++;
-                                        }
-                                    if (count == 0) {
-                                        try{
-                                            await profileModel.updateMany({}, {
-                                                $set: {
-                                                    lottery: 0,
-                                                    previous_lottery_price: 0,
-                                                },
-                                                $mul: {
-                                                    lottery_price_pool: 0.5,
-                                                }
-                                            });
-                                        }catch(err){
-                                            console.log(err);
-                                        }
-                                    }else {
-                                        for (let i = 0; i < count; i++) {
-                                            console.log(winner[i].userID);
-                                            try{
-                                                await profileModel.findOneAndUpdate(
-                                                    {
-                                                        userID: winner[i].userID,
-                                                    },{
-                                                        $inc: {
-                                                            bank: winner[i].lottery_price_pool / count,
-                                                        }
-                                                    })
-                                            }catch(err){
-                                                console.log(err);
-                                            }
-                                        }
-                                        try{
-                                            await profileModel.updateMany({}, {
-                                                $set: {
-                                                    lottery_price_pool: 0,
-                                                    previous_lottery_price: winner[0].lottery_price_pool / count,
-                                                },
-                                            });
-                                        }catch(err){
-                                            console.log(err);
-                                        }
-                                    }
-                                    try{
-                                        await profileModel.updateMany({}, {
-                                            $set: {
-                                                previous_lottery_winner: lotto_number,
-                                                previous_lottery_count: count,
-                                                lottery: 0,
-                                            },
-                                        });
-                                        return message.channel.send(`You have successfully pick lotto ticket`);
-                                    }catch(err){
-                                        console.log(err);
-                                    }
-                                }
+                    // case "lotto":
+                    //     switch(args[2]){
+                    //         case "pool":
+                    //             if(!args[3]) return message.channel.send(`Usage:${config.PREFIX}eco update lotto pool <number>`);
+                    //             try{
+                    //                 await profileModel.updateMany({}, {
+                    //                     $set: {
+                    //                         lottery_price_pool: args[3],
+                    //                     }
+                    //                 });
+                    //                 console.log(`Lotto pool has been updated to ${args[3]}`);
+                    //                 return message.channel.send(`You have successfully update lotto price pool to ${args[3]} ${config.CURRENCY}`);
+                    //             }catch(err){
+                    //                 console.log(err);
+                    //             }
+                    //         break;
+                    //         case "pick":
+                    //             if(!args[3]) return message.channel.send(`Usage:${config.PREFIX}eco update lotto pick <random/number>`);
+                    //             if(args[3] == 'random'){
+                    //                 var lotto_number = getRndInteger(1, 99);
+                    //                 var winner = await profileModel.find( { "lottery": lotto_number } );
+                    //                 var count = 0;
+                    //                     for (var k in winner) {
+                    //                         if (winner.hasOwnProperty(k)) count++;
+                    //                     }
+                    //                 if (count == 0) {
+                    //                     try{
+                    //                         await profileModel.updateMany({}, {
+                    //                             $set: {
+                    //                                 lottery: 0,
+                    //                                 previous_lottery_price: 0,
+                    //                             },
+                    //                             $mul: {
+                    //                                 lottery_price_pool: 0.5,
+                    //                             }
+                    //                         });
+                    //                     }catch(err){
+                    //                         console.log(err);
+                    //                     }
+                    //                 }else {
+                    //                     for (let i = 0; i < count; i++) {
+                    //                         console.log(winner[i].userID);
+                    //                         try{
+                    //                             await profileModel.findOneAndUpdate(
+                    //                                 {
+                    //                                     userID: winner[i].userID,
+                    //                                 },{
+                    //                                     $inc: {
+                    //                                         bank: winner[i].lottery_price_pool / count,
+                    //                                     }
+                    //                                 })
+                    //                         }catch(err){
+                    //                             console.log(err);
+                    //                         }
+                    //                     }
+                    //                     try{
+                    //                         await profileModel.updateMany({}, {
+                    //                             $set: {
+                    //                                 lottery_price_pool: 0,
+                    //                                 previous_lottery_price: winner[0].lottery_price_pool / count,
+                    //                             },
+                    //                         });
+                    //                     }catch(err){
+                    //                         console.log(err);
+                    //                     }
+                    //                 }
+                    //                 try{
+                    //                     await profileModel.updateMany({}, {
+                    //                         $set: {
+                    //                             previous_lottery_winner: lotto_number,
+                    //                             previous_lottery_count: count,
+                    //                             lottery: 0,
+                    //                         },
+                    //                     });
+                    //                     return message.channel.send(`You have successfully pick lotto ticket`);
+                    //                 }catch(err){
+                    //                     console.log(err);
+                    //                 }
+                    //             }else{
+                    //                 var lotto_number = args[3];
+                    //                 var winner = await profileModel.find( { "lottery": lotto_number } );
+                    //                 var count = 0;
+                    //                     for (var k in winner) {
+                    //                         if (winner.hasOwnProperty(k)) count++;
+                    //                     }
+                    //                 if (count == 0) {
+                    //                     try{
+                    //                         await profileModel.updateMany({}, {
+                    //                             $set: {
+                    //                                 lottery: 0,
+                    //                                 previous_lottery_price: 0,
+                    //                             },
+                    //                             $mul: {
+                    //                                 lottery_price_pool: 0.5,
+                    //                             }
+                    //                         });
+                    //                     }catch(err){
+                    //                         console.log(err);
+                    //                     }
+                    //                 }else {
+                    //                     for (let i = 0; i < count; i++) {
+                    //                         console.log(winner[i].userID);
+                    //                         try{
+                    //                             await profileModel.findOneAndUpdate(
+                    //                                 {
+                    //                                     userID: winner[i].userID,
+                    //                                 },{
+                    //                                     $inc: {
+                    //                                         bank: winner[i].lottery_price_pool / count,
+                    //                                     }
+                    //                                 })
+                    //                         }catch(err){
+                    //                             console.log(err);
+                    //                         }
+                    //                     }
+                    //                     try{
+                    //                         await profileModel.updateMany({}, {
+                    //                             $set: {
+                    //                                 lottery_price_pool: 0,
+                    //                                 previous_lottery_price: winner[0].lottery_price_pool / count,
+                    //                             },
+                    //                         });
+                    //                     }catch(err){
+                    //                         console.log(err);
+                    //                     }
+                    //                 }
+                    //                 try{
+                    //                     await profileModel.updateMany({}, {
+                    //                         $set: {
+                    //                             previous_lottery_winner: lotto_number,
+                    //                             previous_lottery_count: count,
+                    //                             lottery: 0,
+                    //                         },
+                    //                     });
+                    //                     return message.channel.send(`You have successfully pick lotto ticket`);
+                    //                 }catch(err){
+                    //                     console.log(err);
+                    //                 }
+                    //             }
                                 
-                            break;
-                            case "ticket":
-                                if(!args[3]) return message.channel.send(`Usage:${config.PREFIX}eco update lotto ticket <everyone/mention> <number>`);
-                                if(args[3] == 'everyone'){
-                                    try{
-                                        await profileModel.updateMany({}, {
-                                            $set: {
-                                                lottery: args[4],
-                                            },
-                                        });
-                                        return message.channel.send(`You have successfully set everyone lotto ticket to ${args[4]}`);
-                                    }catch(err){
-                                        console.log(err);
-                                    }
-                                }else {
-                                    try{
-                                        await profileModel.findOneAndUpdate(
-                                            {
-                                                userID: message.mentions.users.first().id
-                                            },{
-                                                $set: {
-                                                    lottery: args[4],
-                                                }
-                                            })
-                                        console.log(`${message.mentions.users.first().username}, ${message.mentions.users.first().id}'s lotto ticket has been updated to ${args[4]}`);
-                                        return message.channel.send(`You have successfully set lotto ticket of ${args[3]} to ${args[4]}`);
-                                    }catch(err){
-                                        console.log(err);
-                                    }
-                                }
-                            break;
-                            default:
-                                message.channel.send(`Usage:${config.PREFIX}eco update lotto <pool/pick/ticket>`);
-                        }
-                    break;
+                    //         break;
+                    //         case "ticket":
+                    //             if(!args[3]) return message.channel.send(`Usage:${config.PREFIX}eco update lotto ticket <everyone/mention> <number>`);
+                    //             if(args[3] == 'everyone'){
+                    //                 try{
+                    //                     await profileModel.updateMany({}, {
+                    //                         $set: {
+                    //                             lottery: args[4],
+                    //                         },
+                    //                     });
+                    //                     return message.channel.send(`You have successfully set everyone lotto ticket to ${args[4]}`);
+                    //                 }catch(err){
+                    //                     console.log(err);
+                    //                 }
+                    //             }else {
+                    //                 try{
+                    //                     await profileModel.findOneAndUpdate(
+                    //                         {
+                    //                             userID: message.mentions.users.first().id
+                    //                         },{
+                    //                             $set: {
+                    //                                 lottery: args[4],
+                    //                             }
+                    //                         })
+                    //                     console.log(`${message.mentions.users.first().username}, ${message.mentions.users.first().id}'s lotto ticket has been updated to ${args[4]}`);
+                    //                     return message.channel.send(`You have successfully set lotto ticket of ${args[3]} to ${args[4]}`);
+                    //                 }catch(err){
+                    //                     console.log(err);
+                    //                 }
+                    //             }
+                    //         break;
+                    //         default:
+                    //             message.channel.send(`Usage:${config.PREFIX}eco update lotto <pool/pick/ticket>`);
+                    //     }
+                    // break;
                     case "interest":
                         var account = await profileModel.find();
                         var count = 0;
