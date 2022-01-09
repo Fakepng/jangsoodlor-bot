@@ -20,6 +20,7 @@ Jangsoodlor-Bot is a Discord bot developed mostly by [Fakepng](https://github.co
 ## Feature
 
 ### Music
+
 Command | Aliases | Description
 --- | --- | ---
 clip | - | Play mp3 file
@@ -41,6 +42,7 @@ stop | - | Stop the music
 volume | v | Change volume
 
 ### Original
+
 Command | Aliases | Description
 --- | --- | ---
 help | ? | Show help
@@ -49,6 +51,7 @@ ping | - | Show ping
 uptime | - | Show uptime
 
 ### Information
+
 Command | Aliases | Description
 --- | --- | ---
 avatar | - | Show avatar
@@ -77,6 +80,7 @@ waifu | - | Show waifu pictures
 > (prefix)waifu nsfw
 
 ### Response
+
 Command | Aliases | Description
 --- | --- | ---
 abottleofwater | abow | a bo'ohw'o'wo'er
@@ -87,12 +91,14 @@ rules | - | Show rules
 say | - | Say something
 
 ### Game
+
 Command | Aliases | Description
 --- | --- | ---
 flip | - | Flip a coin
 tictactoe | ttt | Play tic tac toe
 
 ### Economy
+
 Command | Aliases | Description
 --- | --- | ---
 balance | bal | Show your daily reward
@@ -102,6 +108,7 @@ void| - | Trow away your money
 withdraw| wd | Withdraw money from your bank account into your wallet
 
 ### Casino
+
 Command | Aliases | Description
 --- | --- | ---
 lotto | - | `No longer available`
