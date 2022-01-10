@@ -1,6 +1,6 @@
 # This bot is base on [eritislami/evobot](https://github.com/eritislami/evobot)
 
-Jangsoodlor-Bot is a Discord bot developed mostly by [Fakepng](https://github.com/Fakepng) and [微博使用者](https://github.com/BioB3). And of course, its namesake [Jangsoodlor](https://github.com/Jangsoodlor). This bot can do many things such as play musics, retrieve server member's avatar, say some inspirational quote and much more. This bot is licensed under MIT license so feel free to fork it. Also we do not have much coding experiences yet. In fact we are just random high-schoolers who have too much free time. Any suggestions regarding the bot are also welcomed.
+**Jangsoodlor-Bot** is a Discord bot developed mostly by [Fakepng](https://github.com/Fakepng) and [微博使用者](https://github.com/BioB3). And of course, its namesake [Jangsoodlor](https://github.com/Jangsoodlor). This bot can do many things such as play musics, retrieve server member's avatar, say some inspirational quote and much more. This bot is licensed under MIT license so feel free to fork it. Also we do not have much coding experiences yet. In fact we are just random high-schoolers who have too much free time. Any suggestions regarding the bot are also welcomed.
 
 ![jangsoodlor-bot avatar](/assets/images/Jangsoodlor-bot.png)
 
