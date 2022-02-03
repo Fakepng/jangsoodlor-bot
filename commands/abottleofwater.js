@@ -1,5 +1,4 @@
 const config = require("../config.json");
-const axios = require('axios');
 
 module.exports = {
     name: 'abottleofwater',
