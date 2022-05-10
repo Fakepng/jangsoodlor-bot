@@ -14,7 +14,7 @@ module.exports = {
         clips.push(file.substring(0, file.length - 4));
       });
 
-      message.reply(`${clips.join(" ")}`).catch(console.error);
+      message.reply(`${clips.join(", ")}`).catch(console.error);
     });
   }
 };
